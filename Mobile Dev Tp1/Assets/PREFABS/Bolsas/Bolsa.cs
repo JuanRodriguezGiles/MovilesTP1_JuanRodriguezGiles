@@ -7,20 +7,20 @@ public class Bolsa : MonoBehaviour
 	//public int IdPlayer = 0;
 	public string TagPlayer = "";
 	public Texture2D ImagenInventario;
-	Player Pj = null;
-	
-	bool Desapareciendo;
+	private Player Pj = null;
+
+	private bool Desapareciendo;
 	public GameObject Particulas;
 	public float TiempParts = 2.5f;
 
 	// Use this for initialization
-	void Start () 
+	private void Start () 
 	{
 		Monto = Pallet.Valores.Valor2;
 	}
 	
 	// Update is called once per frame
-	void Update ()
+	private void Update ()
 	{
 		
 		if(Desapareciendo)
@@ -34,8 +34,8 @@ public class Bolsa : MonoBehaviour
 		}
 		
 	}
-	
-	void OnTriggerEnter(Collider coll)
+
+	private void OnTriggerEnter(Collider coll)
 	{
 		if(coll.tag == TagPlayer)
 		{

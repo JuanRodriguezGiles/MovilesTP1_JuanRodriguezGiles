@@ -5,27 +5,27 @@ public class Estanteria : ManejoPallets
 {	
 	public Cinta CintaReceptora;//cinta que debe recibir la bolsa
 	public Pallet.Valores Valor;
-	PilaPalletMng Contenido;
+	private PilaPalletMng Contenido;
 	public bool Anim = false;
 	
 	
 	//animacion de parpadeo
 	public float Intervalo = 0.7f;
 	public float Permanencia = 0.2f;
-	float AnimTempo = 0;
+	private float AnimTempo = 0;
 	public GameObject ModelSuelo;
 	public Color32 ColorParpadeo;
-	Color32 ColorOrigModel;
+	private Color32 ColorOrigModel;
 	
 	//--------------------------------//	
-	
-	void Start () 
+
+	private void Start () 
 	{
 		Contenido = GetComponent<PilaPalletMng>();
 		ColorOrigModel = ModelSuelo.GetComponent<Renderer>().material.color;
 	}
-	
-	void Update () 
+
+	private void Update () 
 	{
 		//animacion de parpadeo
 		if(Anim)
@@ -49,8 +49,8 @@ public class Estanteria : ManejoPallets
 			}
 		}
 	}
-	
-	void OnTriggerEnter(Collider other)
+
+	private void OnTriggerEnter(Collider other)
 	{
 		ManejoPallets recept = other.GetComponent<ManejoPallets>();
 		if(recept != null)

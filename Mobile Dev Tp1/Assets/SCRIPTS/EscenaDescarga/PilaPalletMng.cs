@@ -6,7 +6,7 @@ public class PilaPalletMng : MonoBehaviour
 	public int CantAct = 0;
 	
 	// Use this for initialization
-	void Start () 
+	private void Start () 
 	{
 		for(int i = 0; i < BolasasEnCamion.Count; i++)
 		{

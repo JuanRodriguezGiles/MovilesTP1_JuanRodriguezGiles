@@ -5,16 +5,16 @@ public class Obstaculo : MonoBehaviour
 {
 	public float ReduccionVel = 0;
 	public float TiempEmpDesapa = 1;
-	float Tempo1 = 0;
+	private float Tempo1 = 0;
 	public float TiempDesapareciendo = 1;
-	float Tempo2 = 0;
+	private float Tempo2 = 0;
 	public string PlayerTag = "Player";
-	
-	bool Chocado = false;
-	bool Desapareciendo = false;
+
+	private bool Chocado = false;
+	private bool Desapareciendo = false;
 	
 	// Update is called once per frame
-	void Update () 
+	private void Update () 
 	{
 		if(Chocado)
 		{
@@ -39,8 +39,8 @@ public class Obstaculo : MonoBehaviour
 			}
 		}
 	}
-	
-	void OnCollisionEnter(Collision coll)
+
+	private void OnCollisionEnter(Collision coll)
 	{
 		if(coll.transform.tag == PlayerTag)
 		{

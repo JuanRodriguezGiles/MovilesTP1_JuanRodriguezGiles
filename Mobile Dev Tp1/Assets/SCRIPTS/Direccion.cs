@@ -12,23 +12,24 @@ public class Direccion : MonoBehaviour
 	
 	public Transform Camion;//lo que va a conducir
 	public Transform Volante;
-	
-	
-	enum Sentido {Der, Izq}
-	Sentido DirAct;
-	float Diferencia;
-	Vector3 Aux;
+
+
+	private enum Sentido {Der, Izq}
+
+	private Sentido DirAct;
+	private float Diferencia;
+	private Vector3 Aux;
 		
 	//---------------------------------------------------------//
 	
 	// Use this for initialization
-	void Start () 
+	private void Start () 
 	{
 	
 	}
 	
 	// Update is called once per frame
-	void Update () 
+	private void Update () 
 	{
 		if(ManoIzq.position.y > ManoDer.position.y)
 		{

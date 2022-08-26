@@ -3,8 +3,8 @@ using System.Collections;
 
 public static class T 
 {
-	static float FDT;
-	static float DT;
+	private static float FDT;
+	private static float DT;
 	
 	
 	
@@ -27,7 +27,7 @@ public static class T
 	//----------
 	//fixed delta time
 	public static float FactorFDT = 1;
-	static bool FifadoFDT = false;
+	private static bool FifadoFDT = false;
 	public static void FijarFDT(float valor)
 	{
 		FifadoFDT = true; 
@@ -43,7 +43,7 @@ public static class T
 	//----------
 	//delta time
 	public static float FactorDT = 1;
-	static bool FifadoDT = false;
+	private static bool FifadoDT = false;
 	public static void FijarDT(float valor)
 	{
 		FifadoDT = true; 

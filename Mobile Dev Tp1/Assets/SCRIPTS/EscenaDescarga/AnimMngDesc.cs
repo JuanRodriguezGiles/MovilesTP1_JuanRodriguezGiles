@@ -6,20 +6,21 @@ public class AnimMngDesc : MonoBehaviour
 	public string AnimEntrada = "Entrada";
 	public string AnimSalida = "Salida";
 	public ControladorDeDescarga ContrDesc;
-	
-	enum AnimEnCurso{Salida,Entrada,Nada}
-	AnimEnCurso AnimAct = AnimMngDesc.AnimEnCurso.Nada;
+
+	private enum AnimEnCurso{Salida,Entrada,Nada}
+
+	private AnimEnCurso AnimAct = AnimMngDesc.AnimEnCurso.Nada;
 	
 	public GameObject PuertaAnimada;
 	
 	// Use this for initialization
-	void Start () 
+	private void Start () 
 	{
 	
 	}
 	
 	// Update is called once per frame
-	void Update () 
+	private void Update () 
 	{
 		if(Input.GetKeyDown(KeyCode.Z))
 			Entrar();

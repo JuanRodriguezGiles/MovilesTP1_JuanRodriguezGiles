@@ -4,10 +4,10 @@ using UnityEngine.SceneManagement;
 
 public class MngPts : MonoBehaviour 
 {
-	Rect R = new Rect();
+	private Rect R = new Rect();
 	
 	public float TiempEmpAnims = 2.5f;
-	float Tempo = 0;
+	private float Tempo = 0;
 	
 	public Vector2[] DineroPos;
 	public Vector2 DineroEsc;
@@ -24,23 +24,23 @@ public class MngPts : MonoBehaviour
 	
 	
 	public float TiempParpadeo = 0.7f;
-	float TempoParpadeo = 0;
-	bool PrimerImaParp = true;
+	private float TempoParpadeo = 0;
+	private bool PrimerImaParp = true;
 	
 	public bool ActivadoAnims = false;
-	
-	Visualizacion Viz = new Visualizacion();
+
+	private Visualizacion Viz = new Visualizacion();
 	
 	//---------------------------------//
 	
 	// Use this for initialization
-	void Start () 
+	private void Start () 
 	{		
 		SetGanador();
 	}
 	
 	// Update is called once per frame
-	void Update () 
+	private void Update () 
 	{
 		//PARA JUGAR
 		if(Input.GetKeyDown(KeyCode.Space) || 
@@ -98,8 +98,8 @@ public class MngPts : MonoBehaviour
 		
 		
 	}
-	
-	void OnGUI()
+
+	private void OnGUI()
 	{
 		if(ActivadoAnims)
 		{
@@ -111,9 +111,9 @@ public class MngPts : MonoBehaviour
 	}
 	
 	//---------------------------------//
-	
-	
-	void SetGanador()
+
+
+	private void SetGanador()
 	{
 		switch(DatosPartida.LadoGanadaor)
 		{
@@ -130,8 +130,8 @@ public class MngPts : MonoBehaviour
 			break;
 		}
 	}
-	
-	void SetDinero()
+
+	private void SetDinero()
 	{
 		GUI.skin = GS_Dinero;
 		
@@ -171,8 +171,8 @@ public class MngPts : MonoBehaviour
 		}
 		
 	}
-	
-	void SetCartelGanador()
+
+	private void SetCartelGanador()
 	{
 		GUI.skin = GS_Ganador;
 		

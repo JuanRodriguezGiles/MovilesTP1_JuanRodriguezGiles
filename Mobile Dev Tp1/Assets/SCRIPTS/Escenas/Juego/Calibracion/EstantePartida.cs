@@ -4,8 +4,8 @@ using System.Collections;
 public class EstantePartida : ManejoPallets
 {
 	public GameObject ManoReceptora;
-	
-	void OnTriggerEnter(Collider other)
+
+	private void OnTriggerEnter(Collider other)
 	{
 		ManejoPallets recept = other.GetComponent<ManejoPallets>();
 		if(recept != null)

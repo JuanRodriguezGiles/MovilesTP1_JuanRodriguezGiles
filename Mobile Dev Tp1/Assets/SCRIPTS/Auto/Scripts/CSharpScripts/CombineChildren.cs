@@ -16,7 +16,7 @@ public class CombineChildren : MonoBehaviour {
 	public bool generateTriangleStrips = true;
 	
 	/// This option has a far longer preprocessing time at startup but leads to better runtime performance.
-	void Start () {
+	private void Start () {
 		Component[] filters  = GetComponentsInChildren(typeof(MeshFilter));
 		Matrix4x4 myTransform = transform.worldToLocalMatrix;
 		Hashtable materialToMesh= new Hashtable();

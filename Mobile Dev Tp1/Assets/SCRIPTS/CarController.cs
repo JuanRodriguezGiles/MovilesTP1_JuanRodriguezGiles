@@ -8,12 +8,12 @@ public class CarController : MonoBehaviour {
     public List<WheelCollider> steeringWheels = new List<WheelCollider>();
     public float throttleCoefficient = 20000f;
     public float maxTurn = 20f;
-    float giro = 0f;
-    float acel = 1f;
+    private float giro = 0f;
+    private float acel = 1f;
 
 	
 	// Update is called once per frame
-	void FixedUpdate () {
+    private void FixedUpdate () {
         foreach (var wheel in throttleWheels) {
             wheel.motorTorque = throttleCoefficient * T.GetFDT() * acel;
         }

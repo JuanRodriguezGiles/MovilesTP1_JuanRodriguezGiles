@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
 	public int IdPlayer = 0;
 	
 	public Bolsa[] Bolasas;
-	int CantBolsAct = 0;
+	private int CantBolsAct = 0;
 	public string TagBolsas = "";
 	
 	public enum Estados{EnDescarga, EnConduccion, EnTutorial, Ninguno}
@@ -17,8 +17,8 @@ public class Player : MonoBehaviour
 	
 	public ControladorDeDescarga ContrDesc;
 	public ContrCalibracion ContrCalib;
-	
-	Visualizacion MiVisualizacion;
+
+	private Visualizacion MiVisualizacion;
 
 	public bool Seleccionado = false;
 	public bool FinCalibrado = false;
@@ -28,7 +28,7 @@ public class Player : MonoBehaviour
 
 	//------------------------------------------------------------------//
 
-	void Start () 
+	private void Start () 
 	{
 		for(int i = 0; i< Bolasas.Length;i++)
 			Bolasas[i] = null;

@@ -6,24 +6,24 @@ public class Cinta : ManejoPallets
 	public float Velocidad = 1;
 	public GameObject Mano;
 	public float Tiempo = 0.5f;
-	Transform ObjAct = null;
+	private Transform ObjAct = null;
 	
 	//animacion de parpadeo
 	public float Intervalo = 0.7f;
 	public float Permanencia = 0.2f;
-	float AnimTempo = 0;
+	private float AnimTempo = 0;
 	public GameObject ModelCinta;
 	public Color32 ColorParpadeo;
-	Color32 ColorOrigModel;
+	private Color32 ColorOrigModel;
 	
 	//------------------------------------------------------------//
-	
-	void Start () 
+
+	private void Start () 
 	{
 		ColorOrigModel = ModelCinta.GetComponent<Renderer>().material.color;
 	}
-	
-	void Update () 
+
+	private void Update () 
 	{
 		//animacion de parpadeo
 		if(Encendida)
@@ -71,8 +71,8 @@ public class Cinta : ManejoPallets
 			}
 		}
 	}
-	
-	void OnTriggerEnter(Collider other)
+
+	private void OnTriggerEnter(Collider other)
 	{
 		ManejoPallets recept = other.GetComponent<ManejoPallets>();
 		if(recept != null)

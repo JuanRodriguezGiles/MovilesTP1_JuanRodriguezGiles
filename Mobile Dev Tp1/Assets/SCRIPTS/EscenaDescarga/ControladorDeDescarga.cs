@@ -3,16 +3,16 @@ using System.Collections;
 
 public class ControladorDeDescarga : MonoBehaviour 
 {
-	System.Collections.Generic.List<Pallet.Valores> Ps = new System.Collections.Generic.List<Pallet.Valores>();
-	
-	int Contador = 0;
-	
-	Deposito2 Dep;
+	private System.Collections.Generic.List<Pallet.Valores> Ps = new System.Collections.Generic.List<Pallet.Valores>();
+
+	private int Contador = 0;
+
+	private Deposito2 Dep;
 	
 	public GameObject[] Componentes;//todos los componentes que debe activar en esta escena
 	
 	public Player Pj;//jugador
-	MeshCollider CollCamion;
+	private MeshCollider CollCamion;
 	
 	public Pallet PEnMov = null;
 	
@@ -33,7 +33,7 @@ public class ControladorDeDescarga : MonoBehaviour
 	public Cinta Cin2;
 	
 	public float Bonus = 0;
-	float TempoBonus;
+	private float TempoBonus;
 	
 	
 	public AnimMngDesc ObjAnimado;
@@ -42,7 +42,7 @@ public class ControladorDeDescarga : MonoBehaviour
 	//--------------------------------------------------------------//
 
 	// Use this for initialization
-	void Start () 
+	private void Start () 
 	{
 		for (int i = 0; i < Componentes.Length; i++)
 		{
@@ -56,7 +56,7 @@ public class ControladorDeDescarga : MonoBehaviour
 	}
 	
 	// Update is called once per frame
-	void Update () 
+	private void Update () 
 	{
 		//contador de tiempo
 		if(PEnMov != null)
@@ -162,8 +162,8 @@ public class ControladorDeDescarga : MonoBehaviour
 		Est2.enabled = false;
 		Cin2.enabled = false;
 	}
-	
-	void Finalizacion()
+
+	private void Finalizacion()
 	{
 		ObjAnimado.Salir();
 	}

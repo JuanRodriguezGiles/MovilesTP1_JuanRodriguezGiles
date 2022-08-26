@@ -5,16 +5,16 @@ public class FadeInicioFinal : MonoBehaviour
 {
 	public float Duracion = 2;
 	public float Vel = 2;
-	float TiempInicial;
-	
-	MngPts Mng;
-	
-	Color aux;
-	
-	bool MngAvisado = false;
+	private float TiempInicial;
+
+	private MngPts Mng;
+
+	private Color aux;
+
+	private bool MngAvisado = false;
 
 	// Use this for initialization
-	void Start ()
+	private void Start ()
 	{
 		Mng = (MngPts)GameObject.FindObjectOfType(typeof (MngPts));
 		TiempInicial = Mng.TiempEspReiniciar;
@@ -25,7 +25,7 @@ public class FadeInicioFinal : MonoBehaviour
 	}
 	
 	// Update is called once per frame
-	void Update () 
+	private void Update () 
 	{
 		
 		if(Mng.TiempEspReiniciar > TiempInicial - Duracion)//aparicion

@@ -118,7 +118,7 @@ public class MirrorReflection : MonoBehaviour
     
     
     // Cleanup all the objects we possibly have created
-    void OnDisable()
+    private void OnDisable()
     {
         if( m_ReflectionTexture ) {
             DestroyImmediate( m_ReflectionTexture );

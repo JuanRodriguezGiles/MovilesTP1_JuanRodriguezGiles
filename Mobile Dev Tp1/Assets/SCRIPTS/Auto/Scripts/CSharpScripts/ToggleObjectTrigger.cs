@@ -3,17 +3,17 @@ using System.Collections;
 
 public class ToggleObjectTrigger : MonoBehaviour
 {
-	void Awake()
+	private void Awake()
 	{
 		GetComponent<Renderer>().enabled = false;
 	}
 
-	void OnTriggerEnter()
+	private void OnTriggerEnter()
 	{
 		GetComponent<Renderer>().enabled = true;
 	}
-	
-	void OnTriggerExit()
+
+	private void OnTriggerExit()
 	{
 		GetComponent<Renderer>().enabled = false;
 	}

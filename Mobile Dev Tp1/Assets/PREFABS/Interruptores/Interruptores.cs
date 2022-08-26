@@ -8,8 +8,8 @@ public class Interruptores : MonoBehaviour
 	public GameObject[] AActivar;
 	
 	public bool Activado = false;
-	
-	void OnTriggerEnter(Collider other) 
+
+	private void OnTriggerEnter(Collider other) 
 	{
 		if(!Activado)
 		{

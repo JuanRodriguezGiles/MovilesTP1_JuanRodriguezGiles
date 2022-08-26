@@ -11,9 +11,9 @@ public class Visualizacion : MonoBehaviour
 {
 	public enum Lado{Izq, Der}
 	public Lado LadoAct;
-	
-	ControlDireccion Direccion;
-	Player Pj;
+
+	private ControlDireccion Direccion;
+	private Player Pj;
 
     public GameObject uiRoot;
     private EnableInPlayerState[] enableInPlayerStates;
@@ -50,19 +50,19 @@ public class Visualizacion : MonoBehaviour
 
     //------------------------------------------------------------------//
 
-    void Awake() {
+    private void Awake() {
         enableInPlayerStates = uiRoot.GetComponentsInChildren<EnableInPlayerState>(includeInactive:true);
     }
 
     // Use this for initialization
-    void Start () 
+    private void Start () 
 	{
 		Direccion = GetComponent<ControlDireccion>();
 		Pj = GetComponent<Player>();
     }
 	
 	// Update is called once per frame
-	void Update () 
+	private void Update () 
 	{
         switch (Pj.EstAct) {
 
@@ -146,8 +146,8 @@ public class Visualizacion : MonoBehaviour
 		CamConduccion.rect = r;
 		CamDescarga.rect = r;
 	}
-	
-	void SetBonus()
+
+	private void SetBonus()
 	{
 		if(Pj.ContrDesc.PEnMov != null)
 		{
@@ -165,13 +165,13 @@ public class Visualizacion : MonoBehaviour
             BonusRoot.SetActive(false);
         }
 	}
-	
-	void SetDinero()
+
+	private void SetDinero()
 	{
         Dinero.text = PrepararNumeros(Pj.Dinero);
     }
-	
-	void SetTuto()
+
+	private void SetTuto()
 	{
 		switch(Pj.ContrCalib.EstAct)
 		{
@@ -194,16 +194,16 @@ public class Visualizacion : MonoBehaviour
                 break;
 		}
 	}
-	
-	void SetVolante()
+
+	private void SetVolante()
 	{
 		float angulo = - 45 * Direccion.GetGiro();
         Vector3 rot = volante.localEulerAngles;
         rot.z = angulo;
         volante.localEulerAngles = rot;
 	}
-	
-	void SetInv()
+
+	private void SetInv()
 	{
 		int contador = 0;
 		for(int i = 0; i < 3; i++)

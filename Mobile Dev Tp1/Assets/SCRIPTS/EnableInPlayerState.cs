@@ -6,7 +6,7 @@ public class EnableInPlayerState : MonoBehaviour
 {
     public Player.Estados[] MisEstados;
 
-    Player.Estados prevEstado = Player.Estados.Ninguno;
+    private Player.Estados prevEstado = Player.Estados.Ninguno;
     public void SetPlayerState(Player.Estados state) {
         if (prevEstado != state) {
             bool activo = false;

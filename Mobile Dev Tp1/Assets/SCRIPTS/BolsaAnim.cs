@@ -7,21 +7,21 @@ public class BolsaAnim : MonoBehaviour
 	
 	public Vector3 Amlitud = Vector3.zero;
 	public float VelMov = 1;
-	
-	Vector3 PosIni;
-	Vector3 vAuxPos = Vector3.zero;
-	bool Subiendo = true;
-	Vector3 vAuxGir = Vector3.zero;
+
+	private Vector3 PosIni;
+	private Vector3 vAuxPos = Vector3.zero;
+	private bool Subiendo = true;
+	private Vector3 vAuxGir = Vector3.zero;
 	
 	public bool Giro = true;
 	public bool MovVert = true;
 	
 	//para que inicien a destiempo
-	float TiempInicio;
-	bool Iniciado = false;
+	private float TiempInicio;
+	private bool Iniciado = false;
 	
 	// Use this for initialization
-	void Start ()
+	private void Start ()
 	{
 		PosIni = transform.position;
 		
@@ -29,7 +29,7 @@ public class BolsaAnim : MonoBehaviour
 	}
 	
 	// Update is called once per frame
-	void Update ()
+	private void Update ()
 	{
 		if(Iniciado)
 		{

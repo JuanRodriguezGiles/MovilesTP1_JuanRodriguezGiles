@@ -15,32 +15,32 @@ public class TaxiComp : MonoBehaviour
 	public Vector2 TiempCadaCuantoDobla_MaxMin = Vector2.zero;
 	
 	public float DuracionGiro = 0;
-	float TempoDurGir = 0;
+	private float TempoDurGir = 0;
 	
 	public float AlcanceVerif = 0;
 	
 	public string TagTerreno = "";
 	
 	public bool Girando = false;
-	Vector3 RotIni;//pasa saber como volver a su posicion original
-	Vector3 PosIni;//para saber donde reiniciar al taxi
-	
-	float TiempEntreGiro = 0;
-	float TempoEntreGiro = 0;
+	private Vector3 RotIni;//pasa saber como volver a su posicion original
+	private Vector3 PosIni;//para saber donde reiniciar al taxi
+
+	private float TiempEntreGiro = 0;
+	private float TempoEntreGiro = 0;
 	
 	public float AngDeGiro = 30;
-	
-	RaycastHit RH;
-	
-	bool Respawneando = false;
-	
-	
-	enum Lado{Der, Izq}
+
+	private RaycastHit RH;
+
+	private bool Respawneando = false;
+
+
+	private enum Lado{Der, Izq}
 	
 	//-----------------------------------------------------------------//
 
 	// Use this for initialization
-	void Start () 
+	private void Start () 
 	{
 		TiempEntreGiro = (float) Random.Range(TiempCadaCuantoDobla_MaxMin.x, TiempCadaCuantoDobla_MaxMin.y);
 		RotIni = this.transform.localEulerAngles;
@@ -48,7 +48,7 @@ public class TaxiComp : MonoBehaviour
 	}
 	
 	// Update is called once per frame
-	void Update () 
+	private void Update () 
 	{
 		
 		if(Respawneando)
@@ -79,9 +79,9 @@ public class TaxiComp : MonoBehaviour
 		}
 		
 		
-	} 
-	
-	void OnTriggerEnter(Collider coll)
+	}
+
+	private void OnTriggerEnter(Collider coll)
 	{
 		if(coll.tag == FinTaxiTag)
 		{
@@ -89,23 +89,23 @@ public class TaxiComp : MonoBehaviour
 			transform.localEulerAngles = RotIni;
 		}		
 	}
-	
-	void OnCollisionEnter(Collision coll)
+
+	private void OnCollisionEnter(Collision coll)
 	{
 		if(coll.transform.tag == LimiteTag)
 		{
 			Respawneando = true;
 		}
 	}
-	
-	void FixedUpdate () 
+
+	private void FixedUpdate () 
 	{
 		this.transform.position += transform.forward * Time.fixedDeltaTime * Vel;
 	}
 	
 	//--------------------------------------------------------------------//
-	
-	bool VerificarCostado(Lado lado)
+
+	private bool VerificarCostado(Lado lado)
 	{
 		switch (lado)
 		{
@@ -131,9 +131,9 @@ public class TaxiComp : MonoBehaviour
 		}
 		
 		return true;
-	}	
-	
-	void Doblar()
+	}
+
+	private void Doblar()
 	{
 		Girando = true;
 		//escoje un lado
@@ -167,24 +167,24 @@ public class TaxiComp : MonoBehaviour
 			transform.localEulerAngles = vaux;
 		}
 	}
-	
-	void DejarDoblar()
+
+	private void DejarDoblar()
 	{
 		Girando = false;
 		TiempEntreGiro = (float) Random.Range(TiempCadaCuantoDobla_MaxMin.x, TiempCadaCuantoDobla_MaxMin.y);
 		
 		transform.localEulerAngles = RotIni;
 	}
-	
-	void Respawn()
+
+	private void Respawn()
 	{
 		Respawneando = false;
 		
 		transform.position = PosIni;
 		transform.localEulerAngles = RotIni;
 	}
-	
-	bool Medicion()
+
+	private bool Medicion()
 	{
 		float dist1 = (GameManager.Instancia.Player1.transform.position - PosIni).magnitude;
 		float dist2 = (GameManager.Instancia.Player2.transform.position - PosIni).magnitude;

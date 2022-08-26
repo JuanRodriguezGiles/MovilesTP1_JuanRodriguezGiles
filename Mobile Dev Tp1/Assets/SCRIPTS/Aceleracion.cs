@@ -15,29 +15,29 @@ public class Aceleracion : MonoBehaviour
 	
 	//pedales
 	public Transform PedalAcel;
-	Vector3 PAclPosIni;
+	private Vector3 PAclPosIni;
 	public Transform PedalFren;
-	Vector3 PFrnPosIni;
+	private Vector3 PFrnPosIni;
 	public float SensivPed = 1;
-	
-	
-	float DifIzq;
-	float DifDer;
-	
-	float Frenado;
-	float Acelerado;
+
+
+	private float DifIzq;
+	private float DifDer;
+
+	private float Frenado;
+	private float Acelerado;
 	
 	//---------------------------------------------------------//
 
 	// Use this for initialization
-	void Start () 
+	private void Start () 
 	{
 		PAclPosIni = PedalAcel.localPosition;
 		PFrnPosIni = PedalFren.localPosition;
 	}
 	
 	// Update is called once per frame
-	void Update () 
+	private void Update () 
 	{
 		DifDer = ManoDer.position.y - AlturaMedia;
 		DifIzq = ManoIzq.position.y - AlturaMedia;

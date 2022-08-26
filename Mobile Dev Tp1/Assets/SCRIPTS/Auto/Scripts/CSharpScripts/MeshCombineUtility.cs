@@ -170,29 +170,29 @@ public class MeshCombineUtility {
 		
 		return mesh;
 	}
-	
-	static void Copy (int vertexcount, Vector3[] src, Vector3[] dst, ref int offset, Matrix4x4 transform)
+
+	private static void Copy (int vertexcount, Vector3[] src, Vector3[] dst, ref int offset, Matrix4x4 transform)
 	{
 		for (int i=0;i<src.Length;i++)
 			dst[i+offset] = transform.MultiplyPoint(src[i]);
 		offset += vertexcount;
 	}
 
-	static void CopyNormal (int vertexcount, Vector3[] src, Vector3[] dst, ref int offset, Matrix4x4 transform)
+	private static void CopyNormal (int vertexcount, Vector3[] src, Vector3[] dst, ref int offset, Matrix4x4 transform)
 	{
 		for (int i=0;i<src.Length;i++)
 			dst[i+offset] = transform.MultiplyVector(src[i]).normalized;
 		offset += vertexcount;
 	}
 
-	static void Copy (int vertexcount, Vector2[] src, Vector2[] dst, ref int offset)
+	private static void Copy (int vertexcount, Vector2[] src, Vector2[] dst, ref int offset)
 	{
 		for (int i=0;i<src.Length;i++)
 			dst[i+offset] = src[i];
 		offset += vertexcount;
 	}
 
-	static void CopyTangents (int vertexcount, Vector4[] src, Vector4[] dst, ref int offset, Matrix4x4 transform)
+	private static void CopyTangents (int vertexcount, Vector4[] src, Vector4[] dst, ref int offset, Matrix4x4 transform)
 	{
 		for (int i=0;i<src.Length;i++)
 		{

@@ -47,19 +47,27 @@ public class GameManager : MonoBehaviour
 
     //--------------------------------------------------------//
 
-    void Awake()
+    private void Awake()
     {
         GameManager.Instancia = this;
     }
 
-    IEnumerator Start()
+    private IEnumerator Start()
     {
         yield return null;
         IniciarTutorial();
     }
 
-    void Update()
+    private void Update()
     {
+        var touches = Input.touches;
+
+        foreach (var VARIABLE in touches)
+        {
+            
+        }
+        
+        
         //REINICIAR
         if (Input.GetKey(KeyCode.Alpha0))
         {
@@ -151,7 +159,7 @@ public class GameManager : MonoBehaviour
 
     //----------------------------------------------------------//
 
-    public void IniciarTutorial()
+    private void IniciarTutorial()
     {
         for (int i = 0; i < ObjsCalibracion1.Length; i++)
         {
@@ -171,7 +179,7 @@ public class GameManager : MonoBehaviour
         conteoInicioText.gameObject.SetActive(false);
     }
 
-    void EmpezarCarrera()
+    private void EmpezarCarrera()
     {
         Player1.GetComponent<Frenado>().RestaurarVel();
         Player1.GetComponent<ControlDireccion>().Habilitado = true;
@@ -180,7 +188,7 @@ public class GameManager : MonoBehaviour
         Player2.GetComponent<ControlDireccion>().Habilitado = true;
     }
 
-    void FinalizarCarrera()
+    private void FinalizarCarrera()
     {
         EstAct = GameManager.EstadoJuego.Finalizado;
 
@@ -216,31 +224,9 @@ public class GameManager : MonoBehaviour
         Player1.ContrDesc.FinDelJuego();
         Player2.ContrDesc.FinDelJuego();
     }
-
-    //se encarga de posicionar la camara derecha para el jugador que esta a la derecha y viseversa
-    //void SetPosicion(PlayerInfo pjInf) {
-    //    pjInf.PJ.GetComponent<Visualizacion>().SetLado(pjInf.LadoAct);
-    //    //en este momento, solo la primera vez, deberia setear la otra camara asi no se superponen
-    //    pjInf.PJ.ContrCalib.IniciarTesteo();
-    //
-    //
-    //    if (pjInf.PJ == Player1) {
-    //        if (pjInf.LadoAct == Visualizacion.Lado.Izq)
-    //            Player2.GetComponent<Visualizacion>().SetLado(Visualizacion.Lado.Der);
-    //        else
-    //            Player2.GetComponent<Visualizacion>().SetLado(Visualizacion.Lado.Izq);
-    //    }
-    //    else {
-    //        if (pjInf.LadoAct == Visualizacion.Lado.Izq)
-    //            Player1.GetComponent<Visualizacion>().SetLado(Visualizacion.Lado.Der);
-    //        else
-    //            Player1.GetComponent<Visualizacion>().SetLado(Visualizacion.Lado.Izq);
-    //    }
-    //
-    //}
-
+    
     //cambia a modo de carrera
-    void CambiarACarrera()
+    private void CambiarACarrera()
     {
         EstAct = GameManager.EstadoJuego.Jugando;
 

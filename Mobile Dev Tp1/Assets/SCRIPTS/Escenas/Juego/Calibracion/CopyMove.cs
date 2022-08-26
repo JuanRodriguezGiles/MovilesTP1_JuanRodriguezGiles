@@ -6,7 +6,7 @@ public class CopyMove : MonoBehaviour
 	public Transform Target;
 	
 	// Update is called once per frame
-	void LateUpdate () 
+	private void LateUpdate () 
 	{
 		transform.position = Target.position;
 	}

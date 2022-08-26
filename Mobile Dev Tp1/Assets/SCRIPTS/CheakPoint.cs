@@ -4,18 +4,18 @@ using System.Collections;
 public class CheakPoint : MonoBehaviour
 {
 	public string PlayerTag = "Player";
-	bool HabilitadoResp = true;
+	private bool HabilitadoResp = true;
 	public float TiempPermanencia = 0.7f;//tiempo que no deja respaunear a un pj desp que el otro lo hizo.
-	float Tempo = 0;
+	private float Tempo = 0;
 
 	// Use this for initialization
-	void Start ()
+	private void Start ()
 	{
 		GetComponent<Renderer>().enabled = false;
 	}
 	
 	// Update is called once per frame
-	void Update () 
+	private void Update () 
 	{
 		if(!HabilitadoResp)
 		{
@@ -27,16 +27,16 @@ public class CheakPoint : MonoBehaviour
 			}
 		}
 	}
-	
-	void OnTriggerEnter(Collider other)
+
+	private void OnTriggerEnter(Collider other)
 	{
 		if(other.tag == PlayerTag)
 		{
 			other.GetComponent<Respawn>().AgregarCP(this);
 		}	
 	}
-	
-	void OnTriggerExit(Collider other)
+
+	private void OnTriggerExit(Collider other)
 	{
 		if(other.tag == PlayerTag)
 		{

@@ -4,20 +4,20 @@ using System.Collections;
 public class LoopTextura : MonoBehaviour 
 {
 	public float Intervalo = 1;
-	float Tempo = 0;
+	private float Tempo = 0;
 	
 	public Texture2D[] Imagenes;
-	int Contador = 0;
+	private int Contador = 0;
 
 	// Use this for initialization
-	void Start () 
+	private void Start () 
 	{
 		if(Imagenes.Length > 0)
 			GetComponent<Renderer>().material.mainTexture = Imagenes[0];
 	}
 	
 	// Update is called once per frame
-	void Update () 
+	private void Update () 
 	{
 		Tempo += Time.deltaTime;
 		

@@ -4,21 +4,22 @@ using System.Collections;
 public class CollContraObst : MonoBehaviour 
 {
 	public float TiempEsp = 1;
-	float Tempo1 = 0;
+	private float Tempo1 = 0;
 	public float TiempNoColl = 2;
-	float Tempo2 = 0;
-	
-	enum Colisiones {ConTodo, EspDesact, SinObst}
-	Colisiones Colisiono = CollContraObst.Colisiones.ConTodo;
+	private float Tempo2 = 0;
+
+	private enum Colisiones {ConTodo, EspDesact, SinObst}
+
+	private Colisiones Colisiono = CollContraObst.Colisiones.ConTodo;
 
 	// Use this for initialization
-	void Start () 
+	private void Start () 
 	{
 		Physics.IgnoreLayerCollision(8,10,false);
 	}
 	
 	// Update is called once per frame
-	void Update () 
+	private void Update () 
 	{
 		switch (Colisiono)
 		{
@@ -44,8 +45,8 @@ public class CollContraObst : MonoBehaviour
 			break;
 		}
 	}
-	
-	void OnCollisionEnter(Collision coll)
+
+	private void OnCollisionEnter(Collision coll)
 	{
 		if(coll.gameObject.tag == "Obstaculo")
 		{
@@ -54,8 +55,8 @@ public class CollContraObst : MonoBehaviour
 	}
 	
 	//-------------------------//
-	
-	void ColisionConObst()
+
+	private void ColisionConObst()
 	{
 		switch (Colisiono)
 		{
@@ -70,8 +71,8 @@ public class CollContraObst : MonoBehaviour
 			break;
 		}
 	}
-	
-	void IgnorarColls(bool b)
+
+	private void IgnorarColls(bool b)
 	{
 		if(name == "Camion1")
 		{

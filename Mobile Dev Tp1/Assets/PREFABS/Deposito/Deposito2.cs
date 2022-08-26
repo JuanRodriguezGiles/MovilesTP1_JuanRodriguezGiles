@@ -3,18 +3,17 @@ using System.Collections;
 
 public class Deposito2 : MonoBehaviour 
 {
-	
-	Player PjActual;
+	private Player PjActual;
 	public string PlayerTag = "Player";
 	public bool Vacio = true;
 	public ControladorDeDescarga Contr1;
 	public ControladorDeDescarga Contr2;
-	
-	Collider[] PjColl;
+
+	private Collider[] PjColl;
 	
 	//----------------------------------------------//
 
-	void Start () 
+	private void Start () 
 	{
 		Contr1 = GameObject.Find("ContrDesc1").GetComponent<ControladorDeDescarga>();
 		Contr2 = GameObject.Find("ContrDesc2").GetComponent<ControladorDeDescarga>();
@@ -23,7 +22,7 @@ public class Deposito2 : MonoBehaviour
 	}
 	
 	// Update is called once per frame
-	void Update () 
+	private void Update () 
 	{
 		if(!Vacio)
 		{

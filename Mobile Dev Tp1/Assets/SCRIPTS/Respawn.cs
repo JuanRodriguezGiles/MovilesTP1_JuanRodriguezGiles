@@ -3,31 +3,31 @@ using System.Collections;
 
 public class Respawn : MonoBehaviour 
 {
-	CheakPoint CPAct;
-	CheakPoint CPAnt;
+	private CheakPoint CPAct;
+	private CheakPoint CPAnt;
 	
 	public float AngMax = 90;//angulo maximo antes del cual se reinicia el camion
-	int VerifPorCuadro = 20;
-	int Contador = 0;
+	private int VerifPorCuadro = 20;
+	private int Contador = 0;
 	
 	public float RangMinDer = 0;
 	public float RangMaxDer = 0;
-	
-	bool IgnorandoColision = false;
+
+	private bool IgnorandoColision = false;
 	public float TiempDeNoColision = 2;
-	float Tempo = 0;
+	private float Tempo = 0;
 	
 	//--------------------------------------------------------//
 
 	// Use this for initialization
-	void Start () 
+	private void Start () 
 	{
 		//restaura las colisiones
 		Physics.IgnoreLayerCollision(8,9,false);
 	}
 	
 	// Update is called once per frame
-	void Update ()
+	private void Update ()
 	{
 		if(CPAct != null)
 		{
@@ -113,8 +113,8 @@ public class Respawn : MonoBehaviour
 			CPAct = cp;
 		}
 	}
-	
-	void IgnorarColision(bool b)
+
+	private void IgnorarColision(bool b)
 	{
 		//no contempla si los dos camiones respawnean relativamente cerca en el espacio 
 		//temporal y uno de ellos va contra el otro, 

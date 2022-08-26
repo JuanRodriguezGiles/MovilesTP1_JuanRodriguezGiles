@@ -11,7 +11,7 @@ public class PalletMover : ManejoPallets {
     }
 
     public ManejoPallets Desde, Hasta;
-    bool segundoCompleto = false;
+    private bool segundoCompleto = false;
 
     private void Update() {
         switch (miInput) {
@@ -42,15 +42,17 @@ public class PalletMover : ManejoPallets {
         }
     }
 
-    void PrimerPaso() {
+    private void PrimerPaso() {
         Desde.Dar(this);
         segundoCompleto = false;
     }
-    void SegundoPaso() {
+
+    private void SegundoPaso() {
         base.Pallets[0].transform.position = transform.position;
         segundoCompleto = true;
     }
-    void TercerPaso() {
+
+    private void TercerPaso() {
         Dar(Hasta);
         segundoCompleto = false;
     }

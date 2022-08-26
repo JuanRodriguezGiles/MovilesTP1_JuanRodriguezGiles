@@ -5,24 +5,24 @@ public class Frenado : MonoBehaviour
 	public float VelEntrada = 0;
 	public string TagDeposito = "Deposito";
 
-	int Contador = 0;
-	int CantMensajes = 10;
-	float TiempFrenado = 0.5f;
-	float Tempo = 0f;
-	
-	Vector3 Destino;
+	private int Contador = 0;
+	private int CantMensajes = 10;
+	private float TiempFrenado = 0.5f;
+	private float Tempo = 0f;
+
+	private Vector3 Destino;
 	
 	public bool Frenando = false;
 	
 	//-----------------------------------------------------//
 	
 	// Use this for initialization
-	void Start () 
+	private void Start () 
 	{
 		Frenar();
 	}
-	
-	void FixedUpdate ()
+
+	private void FixedUpdate ()
 	{
 		if(Frenando)
 		{
@@ -33,8 +33,8 @@ public class Frenado : MonoBehaviour
 			}
 		}
 	}
-	
-	void OnTriggerEnter(Collider other) 
+
+	private void OnTriggerEnter(Collider other) 
 	{
 		if(other.tag == TagDeposito)
 		{

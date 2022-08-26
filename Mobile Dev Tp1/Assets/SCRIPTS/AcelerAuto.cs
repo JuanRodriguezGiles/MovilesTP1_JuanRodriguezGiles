@@ -4,23 +4,23 @@ using System.Collections;
 public class AcelerAuto : MonoBehaviour 
 {
 	public float AcelPorSeg = 0;
-	float Velocidad = 0;
+	private float Velocidad = 0;
 	public float VelMax = 0;
-	ReductorVelColl Obstaculo = null;
-	
-	
-	bool Avil = true;
+	private ReductorVelColl Obstaculo = null;
+
+
+	private bool Avil = true;
 	public float TiempRecColl = 0;
-	float Tempo = 0;
+	private float Tempo = 0;
 
 	// Use this for initialization
-	void Start () 
+	private void Start () 
 	{
 	
 	}
 	
 	// Update is called once per frame
-	void Update ()
+	private void Update ()
 	{
 		/*
 		if(Velocidad < VelMax)
@@ -41,8 +41,8 @@ public class AcelerAuto : MonoBehaviour
 			}
 		}
 	}
-	
-	void FixedUpdate () 
+
+	private void FixedUpdate () 
 	{
 		/*
 		//this.rigidbody.MovePosition(this.transform.position + this.transform.forward * Velocidad);
@@ -67,8 +67,8 @@ public class AcelerAuto : MonoBehaviour
 		
 		GetComponent<Rigidbody>().AddForce(this.transform.forward * Velocidad);
 	}
-	
-	 void OnCollisionEnter(Collision collision)
+
+	private void OnCollisionEnter(Collision collision)
 	{
 		if(!Avil)
 		{

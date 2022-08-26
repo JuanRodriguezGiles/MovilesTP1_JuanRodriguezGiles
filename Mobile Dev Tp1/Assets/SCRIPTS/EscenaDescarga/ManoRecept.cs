@@ -4,13 +4,13 @@ using System.Collections;
 public class ManoRecept : ManejoPallets 
 {
 	public bool TengoPallet = false;
-	
-	void FixedUpdate () 
+
+	private void FixedUpdate () 
 	{
 		TengoPallet = Tenencia();
 	}
-	
-	void OnTriggerEnter(Collider other)
+
+	private void OnTriggerEnter(Collider other)
 	{
 		ManejoPallets recept = other.GetComponent<ManejoPallets>();
 		if(recept != null)

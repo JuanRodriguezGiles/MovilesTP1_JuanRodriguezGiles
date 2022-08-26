@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Inventario : MonoBehaviour 
 {
-	Player Pj;
+	private Player Pj;
 	
 	public Vector2 FondoPos = Vector2.zero;
 	public Vector2 FondoEsc = Vector2.zero;
@@ -17,25 +17,25 @@ public class Inventario : MonoBehaviour
 	
 	public Texture2D TexturaVacia;//lo que aparece si no hay ninguna bolsa
 	public Texture2D TextFondo;
-	
-	Rect R;
+
+	private Rect R;
 	public GUISkin GS;
 	
 	//------------------------------------------------------------------//
 	
 	// Use this for initialization
-	void Start () 
+	private void Start () 
 	{
 		Pj = GetComponent<Player>();
 	}
 	
 	// Update is called once per frame
-	void Update () 
+	private void Update () 
 	{
 	
 	}
-	
-	void OnGUI()
+
+	private void OnGUI()
 	{
 		
 		switch(Pj.EstAct)

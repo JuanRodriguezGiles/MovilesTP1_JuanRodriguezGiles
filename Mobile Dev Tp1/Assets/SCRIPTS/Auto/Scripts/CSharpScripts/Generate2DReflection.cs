@@ -13,12 +13,12 @@ public class Generate2DReflection : MonoBehaviour
 	
 	public Texture staticCubemap = null;
 
-	void Start()
+	private void Start()
 	{
 		reflectingMaterial.SetTexture("_Cube", staticCubemap);
 	}
 
-	void LateUpdate()
+	private void LateUpdate()
 	{
 		if(!useRealtimeReflection)
 			return;
@@ -26,15 +26,15 @@ public class Generate2DReflection : MonoBehaviour
 		if (Application.platform != RuntimePlatform.WindowsEditor && Application.platform != RuntimePlatform.WindowsPlayer )
 			UpdateReflection();
 	}
-	
-	void OnDisable() {
+
+	private void OnDisable() {
 		if(rtex)	
 			Destroy(rtex);
 			
 		reflectingMaterial.SetTexture("_Cube", staticCubemap);
 	}
-	
-	void UpdateReflection()
+
+	private void UpdateReflection()
 	{
 		if(!rtex)
 		{

@@ -5,7 +5,7 @@ public class ContrCalibracion : MonoBehaviour
 	public Player Pj;
 
 	public float TiempEspCalib = 3;
-	float Tempo2 = 0;
+	private float Tempo2 = 0;
 		
 	public enum Estados{Calibrando, Tutorial, Finalizado}
 	public Estados EstAct = Estados.Calibrando;
@@ -18,7 +18,7 @@ public class ContrCalibracion : MonoBehaviour
 	//----------------------------------------------------//
 	
 	// Use this for initialization
-	void Start () 
+	private void Start () 
 	{
         palletsMover.enabled = false;
         Pj.ContrCalib = this;
@@ -30,7 +30,7 @@ public class ContrCalibracion : MonoBehaviour
 	}
 	
 	// Update is called once per frame
-	void Update ()
+	private void Update ()
 	{
         if(EstAct == ContrCalibracion.Estados.Calibrando && Pj.Seleccionado) {
 			IniciarTesteo();
@@ -50,8 +50,8 @@ public class ContrCalibracion : MonoBehaviour
 	}
 
 	//----------------------------------------------------//
-	
-	void IniciarTesteo()
+
+	private void IniciarTesteo()
 	{
 		EstAct = Estados.Tutorial;
         palletsMover.enabled = true;
@@ -63,8 +63,8 @@ public class ContrCalibracion : MonoBehaviour
         palletsMover.enabled = false;
         GameManager.Instancia.FinCalibracion(Pj.IdPlayer);
 	}
-	
-	void SetActivComp(bool estado)
+
+	private void SetActivComp(bool estado)
 	{
 		if(Partida.GetComponent<Renderer>() != null)
 			Partida.GetComponent<Renderer>().enabled = estado;

@@ -6,8 +6,8 @@ public class DisableObjects : MonoBehaviour
 	public GameObject theObject;
 	
 	private Renderer[] renders = null;
-	
-	void Start()
+
+	private void Start()
 	{
 		Component[] comps = theObject.transform.GetComponentsInChildren(typeof(Renderer));
 		renders = new Renderer[comps.Length];
@@ -16,14 +16,14 @@ public class DisableObjects : MonoBehaviour
 		if(renders == null)
 			renders = new Renderer[0];
 	}
-	
-	void OnTriggerEnter()
+
+	private void OnTriggerEnter()
 	{
 		foreach(Renderer rend in renders)
 			rend.enabled = false;
 	}
-	
-	void OnTriggerExit()
+
+	private void OnTriggerExit()
 	{
 		foreach(Renderer rend in renders)
 			rend.enabled = true;
