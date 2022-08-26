@@ -2,14 +2,6 @@ using UnityEngine;
 
 public class ControlDireccion : MonoBehaviour
 {
-    public enum TipoInput
-    {
-        AWSD,
-        Arrows
-    }
-
-    public TipoInput InputAct = TipoInput.AWSD;
-
     public bool Habilitado = true;
     private CarController carController;
 
@@ -31,7 +23,7 @@ public class ControlDireccion : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        Giro = Input.GetAxis(inputName);
+        Giro = InputManager.Instance.GetAxis(inputName);
         
 
         carController.SetGiro(Giro);

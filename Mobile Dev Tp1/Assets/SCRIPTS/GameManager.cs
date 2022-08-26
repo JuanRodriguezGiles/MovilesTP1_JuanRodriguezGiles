@@ -60,13 +60,6 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        var touches = Input.touches;
-
-        foreach (var VARIABLE in touches)
-        {
-        }
-
-
         //REINICIAR
         if (Input.GetKey(KeyCode.Alpha0)) SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
