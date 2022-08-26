@@ -1,14 +1,11 @@
-using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
-
 using System.Collections;
+
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instancia;
-    public float TiempoDeJuego = 60;
-
     public enum EstadoJuego
     {
         Calibrando,
@@ -16,12 +13,13 @@ public class GameManager : MonoBehaviour
         Finalizado
     }
 
+    public static GameManager Instancia;
+    public float TiempoDeJuego = 60;
+
     public EstadoJuego EstAct = EstadoJuego.Calibrando;
 
     public Player Player1;
     public Player Player2;
-
-    private bool conteoRegresivo = true;
     public float conteoParaInicion = 3;
     public Text conteoInicioText;
     public Text tiempoDeJuegoText;
@@ -45,11 +43,13 @@ public class GameManager : MonoBehaviour
     //la pista de carreras
     public GameObject[] ObjsCarrera;
 
+    private bool conteoRegresivo = true;
+
     //--------------------------------------------------------//
 
     private void Awake()
     {
-        GameManager.Instancia = this;
+        Instancia = this;
     }
 
     private IEnumerator Start()
@@ -64,35 +64,22 @@ public class GameManager : MonoBehaviour
 
         foreach (var VARIABLE in touches)
         {
-            
-        }
-        
-        
-        //REINICIAR
-        if (Input.GetKey(KeyCode.Alpha0))
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
+
+        //REINICIAR
+        if (Input.GetKey(KeyCode.Alpha0)) SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
         //CIERRA LA APLICACION
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            Application.Quit();
-        }
+        if (Input.GetKeyDown(KeyCode.Escape)) Application.Quit();
 
         switch (EstAct)
         {
             case EstadoJuego.Calibrando:
 
-                if (Input.GetKeyDown(KeyCode.W))
-                {
-                    Player1.Seleccionado = true;
-                }
+                if (Input.GetKeyDown(KeyCode.W)) Player1.Seleccionado = true;
 
-                if (Input.GetKeyDown(KeyCode.UpArrow))
-                {
-                    Player2.Seleccionado = true;
-                }
+                if (Input.GetKeyDown(KeyCode.UpArrow)) Player2.Seleccionado = true;
 
                 break;
 
@@ -100,15 +87,9 @@ public class GameManager : MonoBehaviour
             case EstadoJuego.Jugando:
 
                 //SKIP LA CARRERA
-                if (Input.GetKey(KeyCode.Alpha9))
-                {
-                    TiempoDeJuego = 0;
-                }
+                if (Input.GetKey(KeyCode.Alpha9)) TiempoDeJuego = 0;
 
-                if (TiempoDeJuego <= 0)
-                {
-                    FinalizarCarrera();
-                }
+                if (TiempoDeJuego <= 0) FinalizarCarrera();
 
                 if (conteoRegresivo)
                 {
@@ -128,13 +109,9 @@ public class GameManager : MonoBehaviour
                 if (conteoRegresivo)
                 {
                     if (conteoParaInicion > 1)
-                    {
                         conteoInicioText.text = conteoParaInicion.ToString("0");
-                    }
                     else
-                    {
                         conteoInicioText.text = "GO";
-                    }
                 }
 
                 conteoInicioText.gameObject.SetActive(conteoRegresivo);
@@ -161,16 +138,13 @@ public class GameManager : MonoBehaviour
 
     private void IniciarTutorial()
     {
-        for (int i = 0; i < ObjsCalibracion1.Length; i++)
+        for (var i = 0; i < ObjsCalibracion1.Length; i++)
         {
             ObjsCalibracion1[i].SetActive(true);
             ObjsCalibracion2[i].SetActive(true);
         }
 
-        for (int i = 0; i < ObjsCarrera.Length; i++)
-        {
-            ObjsCarrera[i].SetActive(false);
-        }
+        for (var i = 0; i < ObjsCarrera.Length; i++) ObjsCarrera[i].SetActive(false);
 
         Player1.CambiarATutorial();
         Player2.CambiarATutorial();
@@ -190,7 +164,7 @@ public class GameManager : MonoBehaviour
 
     private void FinalizarCarrera()
     {
-        EstAct = GameManager.EstadoJuego.Finalizado;
+        EstAct = EstadoJuego.Finalizado;
 
         TiempoDeJuego = 0;
 
@@ -224,31 +198,22 @@ public class GameManager : MonoBehaviour
         Player1.ContrDesc.FinDelJuego();
         Player2.ContrDesc.FinDelJuego();
     }
-    
+
     //cambia a modo de carrera
     private void CambiarACarrera()
     {
-        EstAct = GameManager.EstadoJuego.Jugando;
+        EstAct = EstadoJuego.Jugando;
 
-        for (int i = 0; i < ObjsCarrera.Length; i++)
-        {
-            ObjsCarrera[i].SetActive(true);
-        }
+        for (var i = 0; i < ObjsCarrera.Length; i++) ObjsCarrera[i].SetActive(true);
 
         //desactivacion de la calibracion
         Player1.FinCalibrado = true;
 
-        for (int i = 0; i < ObjsCalibracion1.Length; i++)
-        {
-            ObjsCalibracion1[i].SetActive(false);
-        }
+        for (var i = 0; i < ObjsCalibracion1.Length; i++) ObjsCalibracion1[i].SetActive(false);
 
         Player2.FinCalibrado = true;
 
-        for (int i = 0; i < ObjsCalibracion2.Length; i++)
-        {
-            ObjsCalibracion2[i].SetActive(false);
-        }
+        for (var i = 0; i < ObjsCalibracion2.Length; i++) ObjsCalibracion2[i].SetActive(false);
 
 
         //posiciona los camiones dependiendo de que lado de la pantalla esten
@@ -287,15 +252,9 @@ public class GameManager : MonoBehaviour
 
     public void FinCalibracion(int playerID)
     {
-        if (playerID == 0)
-        {
-            Player1.FinTuto = true;
-        }
+        if (playerID == 0) Player1.FinTuto = true;
 
-        if (playerID == 1)
-        {
-            Player2.FinTuto = true;
-        }
+        if (playerID == 1) Player2.FinTuto = true;
 
         if (Player1.FinTuto && Player2.FinTuto)
             CambiarACarrera();

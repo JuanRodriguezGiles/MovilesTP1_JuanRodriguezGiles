@@ -1,30 +1,29 @@
-using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 
-public class ManejoPallets : MonoBehaviour 
+using UnityEngine;
+
+public class ManejoPallets : MonoBehaviour
 {
-	protected System.Collections.Generic.List<Pallet> Pallets = new System.Collections.Generic.List<Pallet>();
-	public ControladorDeDescarga Controlador;
-	protected int Contador = 0;
-	
-	public virtual bool Recibir(Pallet pallet)
-	{
-		Pallets.Add(pallet);
-		pallet.Pasaje();
-		return true;
-	}
-	
-	public bool Tenencia()
-	{
-		
-		if(Pallets.Count != 0)
-			return true;
-		else
-			return false;
-	}
-	
-	public virtual void Dar(ManejoPallets receptor)
-	{
-		//es el encargado de decidir si le da o no la bolsa
-	}
+    public ControladorDeDescarga Controlador;
+    protected int Contador = 0;
+    protected List<Pallet> Pallets = new List<Pallet>();
+
+    public virtual bool Recibir(Pallet pallet)
+    {
+        Pallets.Add(pallet);
+        pallet.Pasaje();
+        return true;
+    }
+
+    public bool Tenencia()
+    {
+        if (Pallets.Count != 0)
+            return true;
+        return false;
+    }
+
+    public virtual void Dar(ManejoPallets receptor)
+    {
+        //es el encargado de decidir si le da o no la bolsa
+    }
 }

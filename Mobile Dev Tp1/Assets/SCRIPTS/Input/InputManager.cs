@@ -1,28 +1,22 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 using UnityEngine;
 
-using System.Linq;
-
 public class InputManager
 {
-    static InputManager instance = null;
+    private static InputManager instance;
+
+    private readonly Dictionary<string, float> axisValues = new Dictionary<string, float>();
 
     public static InputManager Instance
     {
         get
         {
-            if (instance == null)
-            {
-                instance = new InputManager();
-            }
+            if (instance == null) instance = new InputManager();
 
             return instance;
         }
     }
-
-    Dictionary<string, float> axisValues = new Dictionary<string, float>();
 
 
     public void SetAxis(string axis, float value)
@@ -32,7 +26,7 @@ public class InputManager
         axisValues[axis] = value;
     }
 
-    float GetOrAddAxis(string axis)
+    private float GetOrAddAxis(string axis)
     {
         if (!axisValues.ContainsKey(axis))
             axisValues.Add(axis, 0f);

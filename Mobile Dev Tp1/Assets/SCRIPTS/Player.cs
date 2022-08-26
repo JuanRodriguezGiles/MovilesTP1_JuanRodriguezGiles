@@ -1,116 +1,114 @@
 using UnityEngine;
 
-public class Player : MonoBehaviour 
+public class Player : MonoBehaviour
 {
-	public int Dinero = 0;
-	public int IdPlayer = 0;
-	
-	public Bolsa[] Bolasas;
-	private int CantBolsAct = 0;
-	public string TagBolsas = "";
-	
-	public enum Estados{EnDescarga, EnConduccion, EnTutorial, Ninguno}
-	public Estados EstAct = Estados.EnConduccion;
-	
-	public bool EnConduccion = true;
-	public bool EnDescarga = false;
-	
-	public ControladorDeDescarga ContrDesc;
-	public ContrCalibracion ContrCalib;
+    public enum Estados
+    {
+        EnDescarga,
+        EnConduccion,
+        EnTutorial,
+        Ninguno
+    }
 
-	private Visualizacion MiVisualizacion;
+    public int Dinero;
+    public int IdPlayer;
 
-	public bool Seleccionado = false;
-	public bool FinCalibrado = false;
-	public bool FinTuto = false;
+    public Bolsa[] Bolasas;
+    public string TagBolsas = "";
+    public Estados EstAct = Estados.EnConduccion;
 
-	public Visualizacion.Lado LadoActual => MiVisualizacion.LadoAct;
+    public bool EnConduccion = true;
+    public bool EnDescarga;
 
-	//------------------------------------------------------------------//
+    public ControladorDeDescarga ContrDesc;
+    public ContrCalibracion ContrCalib;
 
-	private void Start () 
-	{
-		for(int i = 0; i< Bolasas.Length;i++)
-			Bolasas[i] = null;
-		
-		MiVisualizacion = GetComponent<Visualizacion>();
-	}
-	
-	//------------------------------------------------------------------//
-	
-	public bool AgregarBolsa(Bolsa b)
-	{
-		if(CantBolsAct + 1 <= Bolasas.Length)
-		{
-			Bolasas[CantBolsAct] = b;
-			CantBolsAct++;
-			Dinero += (int)b.Monto;
-			b.Desaparecer();
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-	}
-	
-	public void VaciarInv()
-	{
-		for(int i = 0; i< Bolasas.Length;i++)
-			Bolasas[i] = null;
-		
-		CantBolsAct = 0;
-	}
-	
-	public bool ConBolasas()
-	{
-		for(int i = 0; i< Bolasas.Length;i++)
-		{
-			if(Bolasas[i] != null)
-			{
-				return true;
-			}
-		}
-		return false;
-	}
-	
-	public void SetContrDesc(ControladorDeDescarga contr)
-	{
-		ContrDesc = contr;
-	}
-	
-	public ControladorDeDescarga GetContr()
-	{
-		return ContrDesc;
-	}
-	
-	public void CambiarATutorial()
-	{
-		EstAct = Player.Estados.EnTutorial;
-		MiVisualizacion.CambiarATutorial();
-	}
-	
-	public void CambiarAConduccion()
-	{
-		EstAct = Player.Estados.EnConduccion;
-		MiVisualizacion.CambiarAConduccion();
-	}
-	
-	public void CambiarADescarga()
-	{
-		EstAct = Player.Estados.EnDescarga;
-		MiVisualizacion.CambiarADescarga();
-	}
-	
-	public void SacarBolasa()
-	{
-		for(int i = 0; i < Bolasas.Length; i++)
-		{
-			if(Bolasas[i] != null)
-			{
-				Bolasas[i] = null;
-				return;
-			}				
-		}
-	}
+    public bool Seleccionado;
+    public bool FinCalibrado;
+    public bool FinTuto;
+    private int CantBolsAct;
+
+    private Visualizacion MiVisualizacion;
+
+    public Visualizacion.Lado LadoActual => MiVisualizacion.LadoAct;
+
+    //------------------------------------------------------------------//
+
+    private void Start()
+    {
+        for (var i = 0; i < Bolasas.Length; i++)
+            Bolasas[i] = null;
+
+        MiVisualizacion = GetComponent<Visualizacion>();
+    }
+
+    //------------------------------------------------------------------//
+
+    public bool AgregarBolsa(Bolsa b)
+    {
+        if (CantBolsAct + 1 <= Bolasas.Length)
+        {
+            Bolasas[CantBolsAct] = b;
+            CantBolsAct++;
+            Dinero += (int)b.Monto;
+            b.Desaparecer();
+            return true;
+        }
+
+        return false;
+    }
+
+    public void VaciarInv()
+    {
+        for (var i = 0; i < Bolasas.Length; i++)
+            Bolasas[i] = null;
+
+        CantBolsAct = 0;
+    }
+
+    public bool ConBolasas()
+    {
+        for (var i = 0; i < Bolasas.Length; i++)
+            if (Bolasas[i] != null)
+                return true;
+        return false;
+    }
+
+    public void SetContrDesc(ControladorDeDescarga contr)
+    {
+        ContrDesc = contr;
+    }
+
+    public ControladorDeDescarga GetContr()
+    {
+        return ContrDesc;
+    }
+
+    public void CambiarATutorial()
+    {
+        EstAct = Estados.EnTutorial;
+        MiVisualizacion.CambiarATutorial();
+    }
+
+    public void CambiarAConduccion()
+    {
+        EstAct = Estados.EnConduccion;
+        MiVisualizacion.CambiarAConduccion();
+    }
+
+    public void CambiarADescarga()
+    {
+        EstAct = Estados.EnDescarga;
+        MiVisualizacion.CambiarADescarga();
+    }
+
+    public void SacarBolasa()
+    {
+        for (var i = 0; i < Bolasas.Length; i++)
+            if (Bolasas[i] != null)
+            {
+                Bolasas[i] = null;
+                return;
+            }
+    }
 }

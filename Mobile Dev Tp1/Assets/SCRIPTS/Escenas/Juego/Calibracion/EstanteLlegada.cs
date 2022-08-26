@@ -1,15 +1,13 @@
 using UnityEngine;
-using System.Collections;
 
 public class EstanteLlegada : ManejoPallets
 {
+    public GameObject Mano;
+    public ContrCalibracion ContrCalib;
 
-	public GameObject Mano;
-	public ContrCalibracion ContrCalib;
-	
-	public override bool Recibir(Pallet p)
-	{
-        p.Portador = this.gameObject;
+    public override bool Recibir(Pallet p)
+    {
+        p.Portador = gameObject;
         base.Recibir(p);
         ContrCalib.FinTutorial();
 
