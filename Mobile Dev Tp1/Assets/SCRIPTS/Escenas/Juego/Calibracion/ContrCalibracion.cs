@@ -11,15 +11,11 @@ public class ContrCalibracion : MonoBehaviour
 
     public Player Pj;
 
-    public float TiempEspCalib = 3;
     public Estados EstAct = Estados.Calibrando;
-
     public ManejoPallets Partida;
     public ManejoPallets Llegada;
     public Pallet P;
     public ManejoPallets palletsMover;
-    private float Tempo2;
-
     //----------------------------------------------------//
 
     // Use this for initialization
@@ -39,11 +35,7 @@ public class ContrCalibracion : MonoBehaviour
     {
         if (EstAct == Estados.Calibrando && Pj.Seleccionado) IniciarTesteo();
         if (EstAct == Estados.Tutorial)
-            if (Tempo2 < TiempEspCalib)
-            {
-                Tempo2 += T.GetDT();
-                if (Tempo2 > TiempEspCalib) SetActivComp(true);
-            }
+            SetActivComp(true);
     }
 
     //----------------------------------------------------//

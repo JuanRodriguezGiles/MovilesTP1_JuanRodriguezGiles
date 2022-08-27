@@ -75159,7 +75159,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Pj: {fileID: 13058}
-  TiempEspCalib: 1
+  TiempEspCalib: 0.01
   EstAct: 0
   Partida: {fileID: 13044}
   Llegada: {fileID: 13043}
@@ -75178,7 +75178,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Pj: {fileID: 27660010}
-  TiempEspCalib: 1
+  TiempEspCalib: 0.01
   EstAct: 0
   Partida: {fileID: 13040}
   Llegada: {fileID: 13041}
