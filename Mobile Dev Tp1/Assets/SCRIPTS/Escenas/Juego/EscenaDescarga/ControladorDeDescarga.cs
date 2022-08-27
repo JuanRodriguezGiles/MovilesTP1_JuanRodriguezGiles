@@ -87,12 +87,12 @@ public class ControladorDeDescarga : MonoBehaviour
 
         GameObject go;
         //asigna los pallets a las estanterias
-        for (var i = 0; i < Pj.Bolasas.Length; i++)
-            if (Pj.Bolasas[i] != null)
+        for (var i = 0; i < Pj.bolsas.Length; i++)
+            if (Pj.bolsas[i] != null)
             {
                 Contador++;
 
-                switch (Pj.Bolasas[i].Monto)
+                switch (Pj.bolsas[i].Monto)
                 {
                     case Pallet.Valores.Valor1:
                         go = Instantiate(Pallet1);

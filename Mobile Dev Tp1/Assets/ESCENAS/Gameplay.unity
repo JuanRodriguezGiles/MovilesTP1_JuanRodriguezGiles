@@ -32827,7 +32827,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6273}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &6269
 Transform:
@@ -32917,7 +32917,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6273}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &6273
 Transform:
@@ -32930,8 +32930,8 @@ Transform:
   m_LocalPosition: {x: -8.543606, y: 3.2985737, z: 0.00023651123}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 6272}
   - {fileID: 6268}
+  - {fileID: 6272}
   - {fileID: 6264}
   - {fileID: 5830}
   - {fileID: 3359}
@@ -75159,7 +75159,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Pj: {fileID: 13058}
-  TiempEspCalib: 0.01
   EstAct: 0
   Partida: {fileID: 13044}
   Llegada: {fileID: 13043}
@@ -75178,7 +75177,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Pj: {fileID: 27660010}
-  TiempEspCalib: 0.01
   EstAct: 0
   Partida: {fileID: 13040}
   Llegada: {fileID: 13041}
@@ -83256,6 +83254,11 @@ PrefabInstance:
       propertyPath: IdPlayer
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114643806136207610, guid: b81b1a58a0f14c9439cbdd014e695f71,
+        type: 3}
+      propertyPath: bolsas.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 114911345111112572, guid: b81b1a58a0f14c9439cbdd014e695f71,
         type: 3}
       propertyPath: Dinero
@@ -83465,6 +83468,11 @@ PrefabInstance:
       propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5347541339501745234, guid: db6086bb6cb40af44868891788f049a9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5347541339501745235, guid: db6086bb6cb40af44868891788f049a9,
         type: 3}
       propertyPath: m_Pivot.y
@@ -83488,6 +83496,11 @@ PrefabInstance:
     - target: {fileID: 5347541339501745235, guid: db6086bb6cb40af44868891788f049a9,
         type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5347541339629337958, guid: db6086bb6cb40af44868891788f049a9,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5347541339629337959, guid: db6086bb6cb40af44868891788f049a9,
@@ -84196,6 +84209,11 @@ PrefabInstance:
         type: 3}
       propertyPath: InputAct
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114643806136207610, guid: b81b1a58a0f14c9439cbdd014e695f71,
+        type: 3}
+      propertyPath: bolsas.Array.size
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 114911345111112572, guid: b81b1a58a0f14c9439cbdd014e695f71,
         type: 3}
@@ -85041,6 +85059,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 150
       objectReference: {fileID: 0}
+    - target: {fileID: 5347541339501745234, guid: db6086bb6cb40af44868891788f049a9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5347541339501745235, guid: db6086bb6cb40af44868891788f049a9,
         type: 3}
       propertyPath: m_Pivot.y
@@ -85064,6 +85087,11 @@ PrefabInstance:
     - target: {fileID: 5347541339501745235, guid: db6086bb6cb40af44868891788f049a9,
         type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5347541339629337958, guid: db6086bb6cb40af44868891788f049a9,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5347541339629337959, guid: db6086bb6cb40af44868891788f049a9,

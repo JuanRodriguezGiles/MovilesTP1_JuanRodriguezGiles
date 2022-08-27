@@ -215,7 +215,7 @@ public class Visualizacion : MonoBehaviour
     {
         var contador = 0;
         for (var i = 0; i < 3; i++)
-            if (Pj.Bolasas[i] != null)
+            if (Pj.bolsas[i] != null)
                 contador++;
 
         if (contador >= 3)
