@@ -15,7 +15,8 @@ public class CarController : MonoBehaviour
     // Update is called once per frame
     private void FixedUpdate()
     {
-        foreach (var wheel in throttleWheels) wheel.motorTorque = throttleCoefficient * T.GetFDT() * acel;
+        
+        foreach (var wheel in throttleWheels) wheel.motorTorque = throttleCoefficient * Time.fixedDeltaTime * acel;
         foreach (var wheel in steeringWheels) wheel.steerAngle = maxTurn * giro;
         giro = 0f;
     }

@@ -70,7 +70,7 @@ public class GameManager : Singleton<GameManager>
 
                 if (conteoRegresivo)
                 {
-                    conteoParaInicion -= T.GetDT();
+                    conteoParaInicion -= Time.deltaTime;
                     if (conteoParaInicion < 0)
                     {
                         EmpezarCarrera();
@@ -80,7 +80,7 @@ public class GameManager : Singleton<GameManager>
                 else
                 {
                     //baja el tiempo del juego
-                    TiempoDeJuego -= T.GetDT();
+                    TiempoDeJuego -= Time.deltaTime;
                 }
 
                 if (conteoRegresivo)
