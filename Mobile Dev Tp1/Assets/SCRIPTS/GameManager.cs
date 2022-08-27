@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
     public enum EstadoJuego
     {
@@ -13,27 +13,19 @@ public class GameManager : MonoBehaviour
         Finalizado
     }
 
-    public static GameManager Instancia;
     public float TiempoDeJuego = 60;
-
     public EstadoJuego EstAct = EstadoJuego.Calibrando;
-
     public Player Player1;
     public Player Player2;
     public float conteoParaInicion = 3;
     public Text conteoInicioText;
     public Text tiempoDeJuegoText;
-
     public float tiempoEspMuestraPts = 3;
 
     //posiciones de los camiones dependientes del lado que les toco en la pantalla
     //la pos 0 es para la izquierda y la 1 para la derecha
     public Vector3[] PosCamionesCarrera = new Vector3[2];
-
-    //posiciones de los camiones para el tutorial
-    public Vector3 PosCamion1Tuto = Vector3.zero;
-    public Vector3 PosCamion2Tuto = Vector3.zero;
-
+    
     //listas de GO que activa y desactiva por sub-escena
     //escena de tutorial
     public GameObject[] ObjsCalibracion1;
@@ -44,17 +36,9 @@ public class GameManager : MonoBehaviour
     public GameObject[] ObjsCarrera;
 
     private bool conteoRegresivo = true;
-
     //--------------------------------------------------------//
-
-    private void Awake()
+    private void Start()
     {
-        Instancia = this;
-    }
-
-    private IEnumerator Start()
-    {
-        yield return null;
         IniciarTutorial();
     }
 
