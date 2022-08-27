@@ -1,14 +1,16 @@
-﻿using UnityEngine;
+﻿using System;
+
+using UnityEngine;
 
 public class PalletMover : ManejoPallets
 {
-    public enum MoveType
+    public enum Player
     {
-        WASD,
-        Arrows
+        Player1,
+        Player2
     }
 
-    public MoveType miInput;
+    public Player miInput;
 
     public ManejoPallets Desde, Hasta;
     private bool segundoCompleto;
@@ -17,17 +19,83 @@ public class PalletMover : ManejoPallets
     {
         switch (miInput)
         {
-            case MoveType.WASD:
-                if (!Tenencia() && Desde.Tenencia() && Input.GetKeyDown(KeyCode.A)) PrimerPaso();
-                if (Tenencia() && Input.GetKeyDown(KeyCode.S)) SegundoPaso();
-                if (segundoCompleto && Tenencia() && Input.GetKeyDown(KeyCode.D)) TercerPaso();
+            case Player.Player1:
+                if (!Tenencia() && Desde.Tenencia() && TriggerPrimerPaso()) PrimerPaso();
+                if (Tenencia() && TriggerSegundoPaso()) SegundoPaso();
+                if (segundoCompleto && Tenencia() && TriggerTercerPaso()) TercerPaso();
                 break;
-            case MoveType.Arrows:
-                if (!Tenencia() && Desde.Tenencia() && Input.GetKeyDown(KeyCode.LeftArrow)) PrimerPaso();
-                if (Tenencia() && Input.GetKeyDown(KeyCode.DownArrow)) SegundoPaso();
-                if (segundoCompleto && Tenencia() && Input.GetKeyDown(KeyCode.RightArrow)) TercerPaso();
+            case Player.Player2:
+                if (!Tenencia() && Desde.Tenencia() && TriggerPrimerPaso()) PrimerPaso();
+                if (Tenencia() && TriggerSegundoPaso()) SegundoPaso();
+                if (segundoCompleto && Tenencia() && TriggerTercerPaso()) TercerPaso();
                 break;
         }
+    }
+
+    private bool TriggerPrimerPaso()
+    {
+#if UNITY_EDITOR || UNITY_STANDALONE
+        switch (miInput)
+        {
+            case Player.Player1:
+                return Input.GetAxisRaw("Horizontal0") < 0;
+            case Player.Player2:
+                return Input.GetAxisRaw("Horizontal1") < 0;
+        }
+#elif UNITY_ANDROID || UNITY_IOS
+ switch (miInput)
+        {
+            case Player.Player1:
+                return InputManager.Instance.GetAxis("Horizontal0") < -0.5f;
+            case Player.Player2:
+                return InputManager.Instance.GetAxis("Horizontal1") < -0.5f;
+        }
+#endif
+        return false;
+    }
+
+    private bool TriggerSegundoPaso()
+    {
+#if UNITY_EDITOR || UNITY_STANDALONE
+        switch (miInput)
+        {
+            case Player.Player1:
+                return Input.GetAxisRaw("Vertical0") < 0;
+            case Player.Player2:
+                return Input.GetAxisRaw("Vertical1") < 0;
+        }
+#elif UNITY_ANDROID || UNITY_IOS
+ switch (miInput)
+        {
+            case Player.Player1:
+                return InputManager.Instance.GetAxis("Vertical0") < -0.5f;
+            case Player.Player2:
+                return InputManager.Instance.GetAxis("Vertical1") < -0.5f;
+        }
+#endif
+        return false;
+    }
+
+    private bool TriggerTercerPaso()
+    {
+#if UNITY_EDITOR || UNITY_STANDALONE
+        switch (miInput)
+        {
+            case Player.Player1:
+                return Input.GetAxisRaw("Horizontal0") > 0;
+            case Player.Player2:
+                return Input.GetAxisRaw("Horizontal1") > 0;
+        }
+#elif UNITY_ANDROID || UNITY_IOS
+ switch (miInput)
+        {
+            case Player.Player1:
+                return InputManager.Instance.GetAxis("Horizontal0") > 0.5f;
+            case Player.Player2:
+                return InputManager.Instance.GetAxis("Horizontal1") > 0.5f;
+        }
+#endif
+        return false;
     }
 
     private void PrimerPaso()
