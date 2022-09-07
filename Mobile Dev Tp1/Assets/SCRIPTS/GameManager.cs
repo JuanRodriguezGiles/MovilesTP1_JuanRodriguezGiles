@@ -1,45 +1,36 @@
-using System.Collections;
-
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
+
+public enum EstadoJuego
+{
+    Calibrando,
+    Jugando,
+    Finalizado,
+    MostrandoPuntos
+}
 
 public class GameManager : Singleton<GameManager>
 {
-    public enum EstadoJuego
-    {
-        Calibrando,
-        Jugando,
-        Finalizado
-    }
-
     public float TiempoDeJuego = 60;
     public EstadoJuego EstAct = EstadoJuego.Calibrando;
-    public Player Player1;
-    public Player Player2;
     public float conteoParaInicion = 3;
-    public Text conteoInicioText;
-    public Text tiempoDeJuegoText;
     public float tiempoEspMuestraPts = 3;
 
-    //posiciones de los camiones dependientes del lado que les toco en la pantalla
-    //la pos 0 es para la izquierda y la 1 para la derecha
-    public Vector3[] PosCamionesCarrera = new Vector3[2];
-    
-    //listas de GO que activa y desactiva por sub-escena
-    //escena de tutorial
-    public GameObject[] ObjsCalibracion1;
-
-    public GameObject[] ObjsCalibracion2;
-
-    //la pista de carreras
-    public GameObject[] ObjsCarrera;
-
+    [HideInInspector] public int players = 2;
+    [HideInInspector] public LevelController levelController = null;
     private bool conteoRegresivo = true;
     //--------------------------------------------------------//
-    private void Start()
+    private void OnEnable()
     {
-        IniciarTutorial();
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+    
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == SceneConstants.gameplay) 
+        {
+            levelController = FindObjectOfType<LevelController>();
+        }
     }
 
     private void Update()
@@ -53,187 +44,83 @@ public class GameManager : Singleton<GameManager>
         switch (EstAct)
         {
             case EstadoJuego.Calibrando:
-
-                if (Input.GetKeyDown(KeyCode.W)) Player1.Seleccionado = true;
-
-                if (Input.GetKeyDown(KeyCode.UpArrow)) Player2.Seleccionado = true;
-
+                if (Input.GetKeyDown(KeyCode.W)) levelController.Player1.Seleccionado = true;
+                if (Input.GetKeyDown(KeyCode.UpArrow)) levelController.Player2.Seleccionado = true;
                 break;
-
-
             case EstadoJuego.Jugando:
-
                 //SKIP LA CARRERA
                 if (Input.GetKey(KeyCode.Alpha9)) TiempoDeJuego = 0;
-
-                if (TiempoDeJuego <= 0) FinalizarCarrera();
+                if (TiempoDeJuego <= 0) levelController.FinalizarCarrera();
 
                 if (conteoRegresivo)
                 {
                     conteoParaInicion -= Time.deltaTime;
                     if (conteoParaInicion < 0)
                     {
-                        EmpezarCarrera();
+                        levelController.EmpezarCarrera();
                         conteoRegresivo = false;
+                        levelController.tiempoDeJuegoText.transform.parent.gameObject.SetActive(EstAct == EstadoJuego.Jugando && !conteoRegresivo);
                     }
                 }
                 else
                 {
-                    //baja el tiempo del juego
                     TiempoDeJuego -= Time.deltaTime;
                 }
 
                 if (conteoRegresivo)
                 {
                     if (conteoParaInicion > 1)
-                        conteoInicioText.text = conteoParaInicion.ToString("0");
+                        levelController.conteoInicioText.text = conteoParaInicion.ToString("0");
                     else
-                        conteoInicioText.text = "GO";
+                        levelController.conteoInicioText.text = "GO";
                 }
 
-                conteoInicioText.gameObject.SetActive(conteoRegresivo);
-
-                tiempoDeJuegoText.text = TiempoDeJuego.ToString("00");
-
+                levelController.conteoInicioText.gameObject.SetActive(conteoRegresivo);
+                levelController.tiempoDeJuegoText.text = TiempoDeJuego.ToString("00");
                 break;
-
             case EstadoJuego.Finalizado:
-
-                //muestra el puntaje
-
                 tiempoEspMuestraPts -= Time.deltaTime;
                 if (tiempoEspMuestraPts <= 0)
-                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-
+                {
+                    EstAct = EstadoJuego.MostrandoPuntos;
+                    SceneManager.LoadScene(SceneConstants.endScreen);
+                }
+                break;
+            case EstadoJuego.MostrandoPuntos:
+            default:
                 break;
         }
-
-        tiempoDeJuegoText.transform.parent.gameObject.SetActive(EstAct == EstadoJuego.Jugando && !conteoRegresivo);
     }
-
     //----------------------------------------------------------//
-
-    private void IniciarTutorial()
+    public void StartGame(int players)
     {
-        for (var i = 0; i < ObjsCalibracion1.Length; i++)
-        {
-            ObjsCalibracion1[i].SetActive(true);
-            ObjsCalibracion2[i].SetActive(true);
-        }
+        this.players = players;
 
-        for (var i = 0; i < ObjsCarrera.Length; i++) ObjsCarrera[i].SetActive(false);
-
-        Player1.CambiarATutorial();
-        Player2.CambiarATutorial();
-
-        tiempoDeJuegoText.transform.parent.gameObject.SetActive(false);
-        conteoInicioText.gameObject.SetActive(false);
+        SceneManager.LoadScene(SceneConstants.gameplay);
     }
-
-    private void EmpezarCarrera()
+    
+    public string PrepararNumeros(int dinero)
     {
-        Player1.GetComponent<Frenado>().RestaurarVel();
-        Player1.GetComponent<ControlDireccion>().Habilitado = true;
+        var strDinero = dinero.ToString();
+        var res = "";
 
-        Player2.GetComponent<Frenado>().RestaurarVel();
-        Player2.GetComponent<ControlDireccion>().Habilitado = true;
-    }
+        if (dinero < 1) //sin ditero
+            res = "";
+        else if (strDinero.Length == 6) //cientos de miles
+            for (var i = 0; i < strDinero.Length; i++)
+            {
+                res += strDinero[i];
 
-    private void FinalizarCarrera()
-    {
-        EstAct = EstadoJuego.Finalizado;
+                if (i == 2) res += ".";
+            }
+        else if (strDinero.Length == 7) //millones
+            for (var i = 0; i < strDinero.Length; i++)
+            {
+                res += strDinero[i];
 
-        TiempoDeJuego = 0;
+                if (i == 0 || i == 3) res += ".";
+            }
 
-        if (Player1.Dinero > Player2.Dinero)
-        {
-            //lado que gano
-            if (Player1.LadoActual == Visualizacion.Lado.Der)
-                DatosPartida.LadoGanadaor = DatosPartida.Lados.Der;
-            else
-                DatosPartida.LadoGanadaor = DatosPartida.Lados.Izq;
-            //puntajes
-            DatosPartida.PtsGanador = Player1.Dinero;
-            DatosPartida.PtsPerdedor = Player2.Dinero;
-        }
-        else
-        {
-            //lado que gano
-            if (Player2.LadoActual == Visualizacion.Lado.Der)
-                DatosPartida.LadoGanadaor = DatosPartida.Lados.Der;
-            else
-                DatosPartida.LadoGanadaor = DatosPartida.Lados.Izq;
-
-            //puntajes
-            DatosPartida.PtsGanador = Player2.Dinero;
-            DatosPartida.PtsPerdedor = Player1.Dinero;
-        }
-
-        Player1.GetComponent<Frenado>().Frenar();
-        Player2.GetComponent<Frenado>().Frenar();
-
-        Player1.ContrDesc.FinDelJuego();
-        Player2.ContrDesc.FinDelJuego();
-    }
-
-    //cambia a modo de carrera
-    private void CambiarACarrera()
-    {
-        EstAct = EstadoJuego.Jugando;
-
-        for (var i = 0; i < ObjsCarrera.Length; i++) ObjsCarrera[i].SetActive(true);
-
-        //desactivacion de la calibracion
-        Player1.FinCalibrado = true;
-
-        for (var i = 0; i < ObjsCalibracion1.Length; i++) ObjsCalibracion1[i].SetActive(false);
-
-        Player2.FinCalibrado = true;
-
-        for (var i = 0; i < ObjsCalibracion2.Length; i++) ObjsCalibracion2[i].SetActive(false);
-
-
-        //posiciona los camiones dependiendo de que lado de la pantalla esten
-        if (Player1.LadoActual == Visualizacion.Lado.Izq)
-        {
-            Player1.gameObject.transform.position = PosCamionesCarrera[0];
-            Player2.gameObject.transform.position = PosCamionesCarrera[1];
-        }
-        else
-        {
-            Player1.gameObject.transform.position = PosCamionesCarrera[1];
-            Player2.gameObject.transform.position = PosCamionesCarrera[0];
-        }
-
-        Player1.transform.forward = Vector3.forward;
-        Player1.GetComponent<Frenado>().Frenar();
-        Player1.CambiarAConduccion();
-
-        Player2.transform.forward = Vector3.forward;
-        Player2.GetComponent<Frenado>().Frenar();
-        Player2.CambiarAConduccion();
-
-        //los deja andando
-        Player1.GetComponent<Frenado>().RestaurarVel();
-        Player2.GetComponent<Frenado>().RestaurarVel();
-        //cancela la direccion
-        Player1.GetComponent<ControlDireccion>().Habilitado = false;
-        Player2.GetComponent<ControlDireccion>().Habilitado = false;
-        //les de direccion
-        Player1.transform.forward = Vector3.forward;
-        Player2.transform.forward = Vector3.forward;
-
-        tiempoDeJuegoText.transform.parent.gameObject.SetActive(false);
-        conteoInicioText.gameObject.SetActive(false);
-    }
-
-    public void FinCalibracion(int playerID)
-    {
-        if (playerID == 0) Player1.FinTuto = true;
-
-        if (playerID == 1) Player2.FinTuto = true;
-
-        if (Player1.FinTuto && Player2.FinTuto)
-            CambiarACarrera();
+        return res;
     }
 }

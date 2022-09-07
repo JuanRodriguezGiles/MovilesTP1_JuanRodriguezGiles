@@ -1,34 +1,25 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MngPts : MonoBehaviour
+public class EndScreenController : MonoBehaviour
 {
     public float TiempEmpAnims = 2.5f;
 
     public Vector2[] DineroPos;
     public Vector2 DineroEsc;
     public GUISkin GS_Dinero;
-
     public Vector2 GanadorPos;
     public Vector2 GanadorEsc;
     public Texture2D[] Ganadores;
     public GUISkin GS_Ganador;
-
-    public GameObject Fondo;
-
     public float TiempEspReiniciar = 10;
-
-
     public float TiempParpadeo = 0.7f;
-
     public bool ActivadoAnims;
+    
     private bool PrimerImaParp = true;
     private Rect R;
     private float Tempo;
     private float TempoParpadeo;
-
-    private readonly Visualizacion Viz = new Visualizacion();
-
     //---------------------------------//
 
     // Use this for initialization
@@ -51,7 +42,7 @@ public class MngPts : MonoBehaviour
 
 
         TiempEspReiniciar -= Time.deltaTime;
-        if (TiempEspReiniciar <= 0) SceneManager.LoadScene(0);
+        if (TiempEspReiniciar <= 0) SceneManager.LoadScene(SceneConstants.mainMenu);
 
 
         if (ActivadoAnims)
@@ -133,11 +124,11 @@ public class MngPts : MonoBehaviour
         if (DatosPartida.LadoGanadaor == DatosPartida.Lados.Izq) //izquierda
         {
             if (!PrimerImaParp) //para que parpadee
-                GUI.Box(R, "$" + Viz.PrepararNumeros(DatosPartida.PtsGanador));
+                GUI.Box(R, "$" + GameManager.Instance.PrepararNumeros(DatosPartida.PtsGanador));
         }
         else
         {
-            GUI.Box(R, "$" + Viz.PrepararNumeros(DatosPartida.PtsPerdedor));
+            GUI.Box(R, "$" + GameManager.Instance.PrepararNumeros(DatosPartida.PtsPerdedor));
         }
 
 
@@ -148,11 +139,11 @@ public class MngPts : MonoBehaviour
         if (DatosPartida.LadoGanadaor == DatosPartida.Lados.Der) //derecha
         {
             if (!PrimerImaParp) //para que parpadee
-                GUI.Box(R, "$" + Viz.PrepararNumeros(DatosPartida.PtsGanador));
+                GUI.Box(R, "$" + GameManager.Instance.PrepararNumeros(DatosPartida.PtsGanador));
         }
         else
         {
-            GUI.Box(R, "$" + Viz.PrepararNumeros(DatosPartida.PtsPerdedor));
+            GUI.Box(R, "$" + GameManager.Instance.PrepararNumeros(DatosPartida.PtsPerdedor));
         }
     }
 

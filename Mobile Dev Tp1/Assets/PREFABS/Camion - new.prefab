@@ -7922,9 +7922,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4827866222774608}
   - component: {fileID: 54983393838270490}
+  - component: {fileID: 65677508709927354}
   - component: {fileID: 114643806136207610}
   - component: {fileID: 114998836577221504}
-  - component: {fileID: 65677508709927354}
   - component: {fileID: 114915911208098546}
   - component: {fileID: 114475702172432364}
   - component: {fileID: 114911345111112572}
@@ -7974,6 +7974,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &65677508709927354
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1753749050268706}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.2994547, y: 1.8107781, z: 7.600887}
+  m_Center: {x: 0.064893365, y: 1.0762436, z: 0.17439723}
 --- !u!114 &114643806136207610
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7988,10 +8001,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Dinero: 0
   IdPlayer: 0
-  Bolasas:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  bolsas: []
   TagBolsas: 
   EstAct: 1
   EnConduccion: 1
@@ -8016,19 +8026,6 @@ MonoBehaviour:
   VelEntrada: 0
   TagDeposito: Deposito
   Frenando: 0
---- !u!65 &65677508709927354
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1753749050268706}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 4.2994547, y: 1.8107781, z: 7.600887}
-  m_Center: {x: 0.064893365, y: 1.0762436, z: 0.17439723}
 --- !u!114 &114915911208098546
 MonoBehaviour:
   m_ObjectHideFlags: 0

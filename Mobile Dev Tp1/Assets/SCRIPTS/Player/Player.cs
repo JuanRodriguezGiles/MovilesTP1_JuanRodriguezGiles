@@ -28,7 +28,7 @@ public class Player : MonoBehaviour
     public bool FinTuto;
     private int CantBolsAct;
 
-    private Visualizacion MiVisualizacion;
+    public Visualizacion MiVisualizacion;
 
     public Visualizacion.Lado LadoActual => MiVisualizacion.LadoAct;
 

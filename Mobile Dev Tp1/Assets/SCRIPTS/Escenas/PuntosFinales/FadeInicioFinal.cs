@@ -2,20 +2,15 @@ using UnityEngine;
 
 public class FadeInicioFinal : MonoBehaviour
 {
+    [SerializeField] private EndScreenController Mng;
     public float Duracion = 2;
-    public float Vel = 2;
 
     private Color aux;
-
-    private MngPts Mng;
-
     private bool MngAvisado;
     private float TiempInicial;
 
-    // Use this for initialization
     private void Start()
     {
-        Mng = (MngPts)FindObjectOfType(typeof(MngPts));
         TiempInicial = Mng.TiempEspReiniciar;
 
         aux = GetComponent<Renderer>().material.color;
@@ -23,7 +18,6 @@ public class FadeInicioFinal : MonoBehaviour
         GetComponent<Renderer>().material.color = aux;
     }
 
-    // Update is called once per frame
     private void Update()
     {
         if (Mng.TiempEspReiniciar > TiempInicial - Duracion) //aparicion

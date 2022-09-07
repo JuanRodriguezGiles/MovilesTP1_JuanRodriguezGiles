@@ -176,7 +176,7 @@ public class Visualizacion : MonoBehaviour
 
     private void SetDinero()
     {
-        Dinero.text = PrepararNumeros(Pj.Dinero);
+        Dinero.text = GameManager.Instance.PrepararNumeros(Pj.Dinero);
     }
 
     private void SetTuto()
@@ -241,30 +241,5 @@ public class Visualizacion : MonoBehaviour
         {
             Inventario.sprite = InvSprites[contador];
         }
-    }
-
-    public string PrepararNumeros(int dinero)
-    {
-        var strDinero = dinero.ToString();
-        var res = "";
-
-        if (dinero < 1) //sin ditero
-            res = "";
-        else if (strDinero.Length == 6) //cientos de miles
-            for (var i = 0; i < strDinero.Length; i++)
-            {
-                res += strDinero[i];
-
-                if (i == 2) res += ".";
-            }
-        else if (strDinero.Length == 7) //millones
-            for (var i = 0; i < strDinero.Length; i++)
-            {
-                res += strDinero[i];
-
-                if (i == 0 || i == 3) res += ".";
-            }
-
-        return res;
     }
 }
