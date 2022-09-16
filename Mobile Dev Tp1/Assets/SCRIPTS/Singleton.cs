@@ -2,15 +2,10 @@ using UnityEngine;
 
 public class Singleton<T> : MonoBehaviour where T : Component
 {
-    #region EXPOSED_FIELDS
     [SerializeField] protected bool dontDestroy = true;
-    #endregion
-
-    #region PRIVATE_FIELDS
+    
     private static T instance;
-    #endregion
 
-    #region PUBLIC_METHODS
     public static T Instance
     {
         get
@@ -29,16 +24,12 @@ public class Singleton<T> : MonoBehaviour where T : Component
             return instance;
         }
     }
-    #endregion
 
-    #region PROTECTED_METHODS
     protected virtual void Awake()
     {
         Configure();
     }
-    #endregion
 
-    #region PRIVATE_METHODS
     private void Configure()
     {
         if (instance == null)
@@ -56,5 +47,4 @@ public class Singleton<T> : MonoBehaviour where T : Component
             return;
         }
     }
-    #endregion
 }
