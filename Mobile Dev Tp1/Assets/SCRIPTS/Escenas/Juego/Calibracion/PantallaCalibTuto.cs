@@ -1,21 +1,24 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PantallaCalibTuto : MonoBehaviour
 {
-    public Texture2D[] ImagenesDelTuto;
-    public float Intervalo = 1.2f; //tiempo de cada cuanto cambia de imagen
-
-    public Texture2D[] ImagenesDeCalib;
-
-    public Texture2D ImaReady;
-
+    public float Intervalo = 1.2f;
+    public int player;
     public ContrCalibracion ContrCalib;
-    private int EnCursoCalib;
+
+    public Image canvasImage;
+
+    public Sprite[] player1PcImages;
+    public Sprite[] player2PcImages;
+    public Sprite[] mobileImages;
+    
+    public Sprite ImaReady;
+
     private int EnCursoTuto;
     private float TempoIntCalib;
     private float TempoIntTuto;
-
-    // Update is called once per frame
+    
     private void Update()
     {
         switch (ContrCalib.EstAct)
@@ -25,37 +28,33 @@ public class PantallaCalibTuto : MonoBehaviour
                 TempoIntCalib += Time.deltaTime;
                 if (TempoIntCalib >= Intervalo)
                 {
+#if UNITY_ANDROID
+                    canvasImage.sprite = mobileImages[3];
+#elif UNITY_STANDALONE
+                    canvasImage.sprite = canvasImage.sprite == player1PcImages[3] ? player2PcImages[3] : player1PcImages[3];
+#endif
                     TempoIntCalib = 0;
-                    if (EnCursoCalib + 1 < ImagenesDeCalib.Length)
-                        EnCursoCalib++;
-                    else
-                        EnCursoCalib = 0;
                 }
-
-                GetComponent<Renderer>().material.mainTexture = ImagenesDeCalib[EnCursoCalib];
-
                 break;
-
             case ContrCalibracion.Estados.Tutorial:
                 //tome la bolsa y depositela en el estante
                 TempoIntTuto += Time.deltaTime;
                 if (TempoIntTuto >= Intervalo)
                 {
                     TempoIntTuto = 0;
-                    if (EnCursoTuto + 1 < ImagenesDelTuto.Length)
+                    if (EnCursoTuto + 1 < player1PcImages.Length - 1)
                         EnCursoTuto++;
                     else
                         EnCursoTuto = 0;
                 }
-
-                GetComponent<Renderer>().material.mainTexture = ImagenesDelTuto[EnCursoTuto];
-
+#if UNITY_ANDROID
+                canvasImage.sprite = mobileImages[EnCursoTuto];
+#elif UNITY_STANDALONE
+                canvasImage.sprite = player == 1 ? player1PcImages[EnCursoTuto] : player2PcImages[EnCursoTuto];
+#endif
                 break;
-
             case ContrCalibracion.Estados.Finalizado:
-                //esperando al otro jugador		
-                GetComponent<Renderer>().material.mainTexture = ImaReady;
-
+                canvasImage.sprite = ImaReady;
                 break;
         }
     }
