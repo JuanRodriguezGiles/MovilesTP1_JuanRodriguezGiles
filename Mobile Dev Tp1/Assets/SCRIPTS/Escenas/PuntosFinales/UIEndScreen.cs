@@ -13,6 +13,7 @@ public class UIEndScreen : MonoBehaviour
     [SerializeField] private float blinkTime = 0;
 
     [Header("UI")]
+    [SerializeField] private Text creditsTxt = null;
     [SerializeField] private Image backgroundImage = null;
     [SerializeField] private Image player1WinImage = null;
     [SerializeField] private Image player2WinImage = null;
@@ -31,6 +32,8 @@ public class UIEndScreen : MonoBehaviour
         {
             players = GameManager.Instance.players;
 
+            creditsTxt.gameObject.SetActive(true);
+            
             if (DatosPartida.LadoGanadaor == DatosPartida.Lados.Izq || players == 1) 
             {
                 player1WinImage.gameObject.SetActive(true);
