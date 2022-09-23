@@ -73580,10 +73580,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Intervalo: 0.8
-  Imagenes:
-  - {fileID: 2800000, guid: 2c9ac95f461fb0448aca4408de9647dc, type: 3}
-  - {fileID: 2800000, guid: f836f4a482f17844b801b9ceb13c1f8a, type: 3}
-  - {fileID: 2800000, guid: b7e088a57ed74ae4ebb26597dfb96cd7, type: 3}
+  player: 2
+  mobileImages:
+  - {fileID: 2800000, guid: b9a90d11edcacc04abd31571c7c7910e, type: 3}
+  - {fileID: 2800000, guid: 7b3cddcba5fccd14facc0c8faa706f68, type: 3}
+  - {fileID: 2800000, guid: ee58a433b0a89464590113ee45d4b6b7, type: 3}
+  player1Images:
+  - {fileID: 2800000, guid: be7f360f593a7fc49b00d04bcbdd3121, type: 3}
+  - {fileID: 2800000, guid: e055019736857f144bcf1d40f0972fcf, type: 3}
+  - {fileID: 2800000, guid: 278226a9afdde684cab59a401fd2052f, type: 3}
+  player2Images:
+  - {fileID: 2800000, guid: d88e75367b2e66448b64c12acb867369, type: 3}
+  - {fileID: 2800000, guid: ec096e3b7085c55409b1a81071c716fc, type: 3}
+  - {fileID: 2800000, guid: 0f2eaeef5fbf04343871360b10d08ceb, type: 3}
 --- !u!114 &12568
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73597,10 +73606,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Intervalo: 0.8
-  Imagenes:
-  - {fileID: 2800000, guid: 2c9ac95f461fb0448aca4408de9647dc, type: 3}
-  - {fileID: 2800000, guid: f836f4a482f17844b801b9ceb13c1f8a, type: 3}
-  - {fileID: 2800000, guid: b7e088a57ed74ae4ebb26597dfb96cd7, type: 3}
+  player: 1
+  mobileImages:
+  - {fileID: 2800000, guid: b9a90d11edcacc04abd31571c7c7910e, type: 3}
+  - {fileID: 2800000, guid: 7b3cddcba5fccd14facc0c8faa706f68, type: 3}
+  - {fileID: 2800000, guid: ee58a433b0a89464590113ee45d4b6b7, type: 3}
+  player1Images:
+  - {fileID: 2800000, guid: be7f360f593a7fc49b00d04bcbdd3121, type: 3}
+  - {fileID: 2800000, guid: e055019736857f144bcf1d40f0972fcf, type: 3}
+  - {fileID: 2800000, guid: 278226a9afdde684cab59a401fd2052f, type: 3}
+  player2Images:
+  - {fileID: 2800000, guid: d88e75367b2e66448b64c12acb867369, type: 3}
+  - {fileID: 2800000, guid: ec096e3b7085c55409b1a81071c716fc, type: 3}
+  - {fileID: 2800000, guid: 0f2eaeef5fbf04343871360b10d08ceb, type: 3}
 --- !u!114 &12641
 MonoBehaviour:
   m_ObjectHideFlags: 0
