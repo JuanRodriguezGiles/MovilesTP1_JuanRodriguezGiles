@@ -9,6 +9,13 @@ public enum EstadoJuego
     MostrandoPuntos
 }
 
+public enum Difficulty
+{
+    EASY,
+    NORMAL,
+    HARD
+}
+
 public class GameManager : Singleton<GameManager>
 {
     public float TiempoDeJuego = 60;
@@ -17,17 +24,20 @@ public class GameManager : Singleton<GameManager>
     public float tiempoEspMuestraPts = 3;
 
     [HideInInspector] public int players = 2;
+    [HideInInspector] public Difficulty difficulty = Difficulty.EASY;
     [HideInInspector] public LevelController levelController = null;
+
     private bool conteoRegresivo = true;
+
     //--------------------------------------------------------//
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
-    
+
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name == SceneConstants.gameplay) 
+        if (scene.name == SceneConstants.gameplay)
         {
             levelController = FindObjectOfType<LevelController>();
         }
@@ -85,12 +95,14 @@ public class GameManager : Singleton<GameManager>
                     EstAct = EstadoJuego.MostrandoPuntos;
                     SceneManager.LoadScene(SceneConstants.endScreen);
                 }
+
                 break;
             case EstadoJuego.MostrandoPuntos:
             default:
                 break;
         }
     }
+
     //----------------------------------------------------------//
     public void StartGame(int players)
     {
@@ -98,7 +110,7 @@ public class GameManager : Singleton<GameManager>
 
         SceneManager.LoadScene(SceneConstants.gameplay);
     }
-    
+
     public string PrepararNumeros(int dinero)
     {
         var strDinero = dinero.ToString();
@@ -122,5 +134,10 @@ public class GameManager : Singleton<GameManager>
             }
 
         return res;
+    }
+
+    public void SetDifficulty(int diff)
+    {
+        difficulty = (Difficulty)diff;
     }
 }

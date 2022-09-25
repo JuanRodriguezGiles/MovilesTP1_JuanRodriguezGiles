@@ -1,3 +1,5 @@
+using System;
+
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,6 +15,12 @@ public class LevelController : MonoBehaviour
     public GameObject[] ObjsCalibracion1;
     public GameObject[] ObjsCalibracion2;
     public GameObject[] ObjsCarrera;
+
+    public Transform[] obstacles;
+    public GameObject normalOffloadStations;
+    public GameObject hardOffloadStations;
+    public GameObject normalMoneyBags;
+    public GameObject hardMoneyBags;
 
     private int players;
     #endregion
@@ -107,6 +115,29 @@ public class LevelController : MonoBehaviour
         GameManager.Instance.EstAct = EstadoJuego.Jugando;
 
         for (var i = 0; i < ObjsCarrera.Length; i++) ObjsCarrera[i].SetActive(true);
+        
+        switch (GameManager.Instance.difficulty)
+        {
+            case Difficulty.NORMAL:
+                obstacles[(int)Difficulty.NORMAL].gameObject.SetActive(true);
+                
+                normalOffloadStations.SetActive(false);
+                normalMoneyBags.SetActive(false);
+                break;
+            case Difficulty.HARD:
+                obstacles[(int)Difficulty.NORMAL].gameObject.SetActive(true);
+                obstacles[(int)Difficulty.HARD].gameObject.SetActive(true);
+                
+                normalOffloadStations.SetActive(false);
+                hardOffloadStations.SetActive(false);
+                
+                normalMoneyBags.SetActive(false);
+                hardMoneyBags.SetActive(false);
+                break;
+            case Difficulty.EASY:
+            default:
+               break;
+        }
 
         Player1.FinCalibrado = true;
         for (var i = 0; i < ObjsCalibracion1.Length; i++) ObjsCalibracion1[i].SetActive(false);
