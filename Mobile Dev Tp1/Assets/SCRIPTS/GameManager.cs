@@ -29,6 +29,9 @@ public class GameManager : Singleton<GameManager>
 
     private bool conteoRegresivo = true;
 
+    private float gameTime = 0;
+    private float countDownTime = 0;
+    private float raceEndTime = 0;
     //--------------------------------------------------------//
     private void OnEnable()
     {
@@ -39,6 +42,19 @@ public class GameManager : Singleton<GameManager>
     {
         if (scene.name == SceneConstants.gameplay)
         {
+            if (gameTime == 0)
+            {
+                gameTime = TiempoDeJuego;
+                countDownTime = conteoParaInicion;
+                raceEndTime = tiempoEspMuestraPts;
+            }
+            else
+            {
+                TiempoDeJuego = gameTime;
+                conteoParaInicion = countDownTime;
+                tiempoEspMuestraPts = raceEndTime;
+            }
+            
             levelController = FindObjectOfType<LevelController>();
         }
     }
