@@ -17131,6 +17131,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6249}
+  - component: {fileID: 3104}
   m_Layer: 0
   m_Name: Bolsas
   m_TagString: Untagged
@@ -17157,6 +17158,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &3104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b931463c208cc664ca69094f25f6be47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dontDestroy: 0
+  pooledObjects: []
+  objectToPool: {fileID: 13155}
+  amountToPool: 6
 --- !u!1 &3117
 GameObject:
   m_ObjectHideFlags: 0
@@ -79071,6 +79088,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 514ac53862939534083df9fb1d9b6d0d, type: 3}
+--- !u!1 &13155 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100002, guid: 514ac53862939534083df9fb1d9b6d0d,
+    type: 3}
+  m_PrefabInstance: {fileID: 13083}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &13158
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,3 +1,5 @@
+using System.Collections;
+
 using UnityEngine;
 
 public class Bolsa : MonoBehaviour
@@ -45,10 +47,22 @@ public class Bolsa : MonoBehaviour
 
     public void Desaparecer()
     {
-        Particulas.SetActive(true);
+        StartCoroutine(Particles());
+        //Particulas.SetActive(true);
         Desapareciendo = true;
 
         GetComponent<Renderer>().enabled = false;
         GetComponent<Collider>().enabled = false;
+    }
+
+    private IEnumerator Particles()
+    {
+        GameObject particles = BagPool.Instance.GetPooledObject();
+        particles.transform.position = transform.position;
+        particles.SetActive(true);
+
+        yield return new WaitForSeconds(0.5f);
+        
+        particles.SetActive(false);
     }
 }
