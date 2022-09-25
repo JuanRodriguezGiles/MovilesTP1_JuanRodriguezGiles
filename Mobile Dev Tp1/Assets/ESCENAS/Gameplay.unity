@@ -84257,6 +84257,7 @@ MonoBehaviour:
   hardOffloadStations: {fileID: 1744243770}
   normalMoneyBags: {fileID: 199824340}
   hardMoneyBags: {fileID: 1557497406}
+  bonusUi: {fileID: 5347541341002542961}
 --- !u!114 &227525524 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5347541341094276324, guid: db6086bb6cb40af44868891788f049a9,
@@ -90218,3 +90219,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: db6086bb6cb40af44868891788f049a9, type: 3}
+--- !u!224 &5347541341002542961 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5347541340857940610, guid: db6086bb6cb40af44868891788f049a9,
+    type: 3}
+  m_PrefabInstance: {fileID: 5347541341002542960}
+  m_PrefabAsset: {fileID: 0}

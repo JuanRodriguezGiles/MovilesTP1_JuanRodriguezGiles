@@ -21,6 +21,7 @@ public class LevelController : MonoBehaviour
     public GameObject hardOffloadStations;
     public GameObject normalMoneyBags;
     public GameObject hardMoneyBags;
+    public RectTransform bonusUi;
 
     private int players;
     #endregion
@@ -163,6 +164,7 @@ public class LevelController : MonoBehaviour
         else
         {
             Player1.gameObject.transform.position = PosCamionesCarrera[2];
+            bonusUi.anchoredPosition = new Vector2(950, 0);
         }
         
         tiempoDeJuegoText.transform.parent.gameObject.SetActive(false);
