@@ -30,6 +30,9 @@ public class LevelController : MonoBehaviour
     {
         players = GameManager.Instance.players;
 
+        Player1.Init();
+        Player2.Init();
+        
         if (players == 1) 
         {
             SinglePlayerSetup();
@@ -140,10 +143,8 @@ public class LevelController : MonoBehaviour
                break;
         }
 
-        Player1.FinCalibrado = true;
         for (var i = 0; i < ObjsCalibracion1.Length; i++) ObjsCalibracion1[i].SetActive(false);
         
-        Player2.FinCalibrado = true;
         for (var i = 0; i < ObjsCalibracion2.Length; i++) ObjsCalibracion2[i].SetActive(false);
 
         InitPlayer1();
@@ -167,8 +168,8 @@ public class LevelController : MonoBehaviour
             bonusUi.anchoredPosition = new Vector2(950, 0);
         }
         
-        tiempoDeJuegoText.transform.parent.gameObject.SetActive(false);
-        conteoInicioText.gameObject.SetActive(false);
+        tiempoDeJuegoText.transform.parent.gameObject.SetActive(true);
+        conteoInicioText.gameObject.SetActive(true);
     }
 
     public void FinCalibracion(int playerID)

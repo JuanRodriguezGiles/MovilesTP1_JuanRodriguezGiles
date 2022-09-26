@@ -64,10 +64,9 @@ public class Visualizacion : MonoBehaviour
     // Use this for initialization
     private void Start()
     {
-        Direccion = GetComponent<ControlDireccion>();
-        Pj = GetComponent<Player>();
+        
     }
-
+    
     // Update is called once per frame
     private void Update()
     {
@@ -98,7 +97,12 @@ public class Visualizacion : MonoBehaviour
     }
 
     //--------------------------------------------------------//
-
+    public void Init()
+    {
+        Direccion = GetComponent<ControlDireccion>();
+        Pj = GetComponent<Player>();
+    }
+    
     public void CambiarATutorial()
     {
         CamCalibracion.enabled = true;

@@ -847,7 +847,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 366518491aee9c74692656c463a58b3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  displayTime: 15
+  displayTime: 7
   fadeTime: 0.7
   blinkTime: 0.3
   creditsTxt: {fileID: 1998412705}

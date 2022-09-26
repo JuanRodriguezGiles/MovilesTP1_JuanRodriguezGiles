@@ -54,6 +54,9 @@ public class GameManager : Singleton<GameManager>
                 conteoParaInicion = countDownTime;
                 tiempoEspMuestraPts = raceEndTime;
             }
+
+            EstAct = EstadoJuego.Calibrando;
+            conteoRegresivo = true;
             
             levelController = FindObjectOfType<LevelController>();
         }

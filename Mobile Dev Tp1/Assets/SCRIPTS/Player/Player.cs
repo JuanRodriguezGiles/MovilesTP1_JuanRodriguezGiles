@@ -24,7 +24,6 @@ public class Player : MonoBehaviour
     public ContrCalibracion ContrCalib;
 
     public bool Seleccionado;
-    public bool FinCalibrado;
     public bool FinTuto;
     private int CantBolsAct;
 
@@ -33,17 +32,19 @@ public class Player : MonoBehaviour
     public Visualizacion.Lado LadoActual => MiVisualizacion.LadoAct;
 
     //------------------------------------------------------------------//
-
-    private void Start()
+    //------------------------------------------------------------------//
+    public void Init()
     {
         for (var i = 0; i < bolsas.Length; i++)
             bolsas[i] = null;
 
+        Seleccionado = false;
+        FinTuto = false;
+        
         MiVisualizacion = GetComponent<Visualizacion>();
+        MiVisualizacion.Init();
     }
-
-    //------------------------------------------------------------------//
-
+    
     public bool AgregarBolsa(Bolsa b)
     {
         if (CantBolsAct + 1 <= bolsas.Length)
