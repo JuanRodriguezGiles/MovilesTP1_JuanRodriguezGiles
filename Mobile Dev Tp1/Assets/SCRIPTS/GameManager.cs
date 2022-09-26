@@ -73,8 +73,13 @@ public class GameManager : Singleton<GameManager>
         switch (EstAct)
         {
             case EstadoJuego.Calibrando:
+#if UNITY_EDITOR || UNITY_STANDALONE
                 if (Input.GetKeyDown(KeyCode.W)) levelController.Player1.Seleccionado = true;
                 if (Input.GetKeyDown(KeyCode.UpArrow)) levelController.Player2.Seleccionado = true;
+#elif UNITY_ANDROID || UNITY_IOS
+                if(InputManager.Instance.GetAxis("Vertical0") > 0.5f) levelController.Player1.Seleccionado = true;
+                if(InputManager.Instance.GetAxis("Vertical1") > 0.5f) levelController.Player2.Seleccionado = true;
+#endif
                 break;
             case EstadoJuego.Jugando:
                 //SKIP LA CARRERA
