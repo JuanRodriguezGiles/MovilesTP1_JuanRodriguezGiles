@@ -1739,7 +1739,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dontDestroy: 1
-  TiempoDeJuego: 5
+  TiempoDeJuego: 60
   EstAct: 0
   conteoParaInicion: 3
   tiempoEspMuestraPts: 3
